@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
-"""
-03_figures.py -- generate figures from simulation results.
-"""
+
 
 import pandas as pd
 import numpy as np
 
 import matplotlib
-matplotlib.use("Agg")  # no display needed
+matplotlib.use("Agg")  #no display needed
 import matplotlib.pyplot as plt
 
 from .utils import build_paths
 
-# colors
+# plot colors
 COLORS = {
     "acetate":    "#1b9e77",
     "propionate": "#d95f02",
@@ -26,6 +24,7 @@ COLORS = {
 }
 
 
+#what to show on x axis
 COND_ORDER = ["StachysDose_High", "StachysDose_Mid", "StachysDose_Low"]
 XLABELS = ["High", "Mid", "Low"]
 
@@ -33,6 +32,7 @@ FIG_W, FIG_H = 7, 4.5
 DPI = 300
 
 
+#rc params
 plt.rcParams.update({
     "font.family": "serif",
     "font.serif": ["Times New Roman", "Times", "DejaVu Serif"],
@@ -47,10 +47,13 @@ plt.rcParams.update({
 
 
 def main():
+
+
+
     paths = build_paths()
     df = pd.read_csv(paths.results / "merged_dose_scfa_host.csv")
 
-    # sort
+    #sort
     order_map = {c: i for i, c in enumerate(COND_ORDER)}
     df["_ord"] = df["condition"].map(order_map)
     df = df.sort_values("_ord").reset_index(drop=True)
@@ -58,7 +61,7 @@ def main():
 
     baseline_val = df["baseline_objective"].iloc[0]
 
-    # fig 1: SCFA inputs
+    # scfa availability
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
     for scfa, col_name in [("acetate", "acetate_mmol_gDW_hr"),
                             ("propionate", "propionate_mmol_gDW_hr"),
@@ -75,7 +78,7 @@ def main():
     plt.close(fig)
     print("  fig_scfa_inputs.png")
 
-    # fig 2: SCFA ratios
+    #molar ratios
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
     total = (df["acetate_mmol_gDW_hr"] + df["propionate_mmol_gDW_hr"]
              + df["butyrate_mmol_gDW_hr"])
@@ -99,7 +102,7 @@ def main():
     plt.close(fig)
     print("  fig_scfa_ratios.png")
 
-    # fig 3: ATPM
+    #objective atpm
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
     ax.bar(x, df["objective_value"], 0.55, color=COLORS["objective"])
     ax.axhline(baseline_val, color=COLORS["baseline"], ls="--", lw=1.5,
@@ -118,7 +121,7 @@ def main():
     plt.close(fig)
     print("  fig_host_objective.png")
 
-    # fig 4: % change
+    #delta
     if "objective_pct_change" in df.columns:
         fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
         ax.bar(x, df["objective_pct_change"], 0.55, color=COLORS["delta"])
@@ -134,7 +137,7 @@ def main():
         plt.close(fig)
         print("  fig_objective_delta_pct.png")
 
-    # fig 5: exchange fluxes
+    # exchange fluxes
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
     flux_series = [
         ("Glucose",    "glucose_flux",    COLORS["glucose"]),
@@ -158,14 +161,14 @@ def main():
     plt.close(fig)
     print("  fig_host_exchange_fluxes.png")
 
-    # fig 6: pathway heatmap
+    #fig 6: pathway heatmap
     pw_cols = [c for c in df.columns if c.startswith("pathway_")]
     if pw_cols:
         pw = df[pw_cols].copy()
         pw.index = XLABELS
         pw.columns = [c.replace("pathway_", "") for c in pw_cols]
 
-        # drop all-zero or all-NaN
+        #drop all-zero or all-nan
         pw = pw.loc[:, (pw != 0).any() & pw.notna().any()]
 
         if not pw.empty:
@@ -181,7 +184,7 @@ def main():
             ax.set_yticklabels(pw.index)
             ax.set_title("Pathway Fluxes by Condition")
 
-            # annotate
+            #annotate
             vmax = pw.values.max()
             for i in range(len(pw)):
                 for j in range(ncols):
@@ -197,8 +200,9 @@ def main():
             plt.close(fig)
             print("  fig_pathway_heatmap.png")
 
-    print("done with figures")
+    print("finished")
 
 
 if __name__ == "__main__":
     main()
+

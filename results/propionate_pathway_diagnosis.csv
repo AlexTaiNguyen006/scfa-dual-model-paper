@@ -1,0 +1,3 @@
+model,PPCOACm_present,PPCOACm_bounds,MMCDm_present,MMCDm_bounds,MMMm_present,MMMm_bounds,MMEm_present,MMEm_bounds,r0280_present,r0280_bounds,SUCOASm_present,SUCOASm_bounds,PROPAT4te_present,PROPAT4te_bounds,MAR03213_present,MAR03213_bounds,MAR03215_present,MAR03215_bounds,MAR08787_present,MAR08787_bounds,MAR01521_present,MAR01521_bounds
+Recon3D,False,N/A,True,"(0.0, 1000.0)",True,"(-1000.0, 1000.0)",True,"(-1000.0, 1000.0)",True,"(0.0, 1000.0)",True,"(-1000.0, 1000.0)",True,"(-1000.0, 1000.0)",False,N/A,False,N/A,False,N/A,False,N/A
+Human-GEM,False,N/A,False,N/A,False,N/A,False,N/A,False,N/A,False,N/A,False,N/A,True,"(0.0, 1000.0)",True,"(0.0, 1000.0)",True,"(0.0, 1000.0)",True,"(0.0, 1000.0)"

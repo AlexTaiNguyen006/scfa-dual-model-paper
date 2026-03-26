@@ -2,5 +2,22 @@ __pycache__/
 *.pyc
 .DS_Store
 data/models/cache/
+data/models/Human-GEM.xml
+data/models/Recon3D.xml.gz
+data/models/*.xml
+
+# manuscript editing helpers (not part of pipeline)
+fix_abstract.py
+fix_manuscript.py
+fix_spacing.py
 *.egg-info/
 .ipynb_checkpoints/
+
+# old script versions
+src/03_figures_old*.py
+
+# development helpers
+_verify.py
+
+# old figure naming convention
+outputs/figs/Figure*scfa.png

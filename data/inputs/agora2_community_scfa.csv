@@ -1,0 +1,18 @@
+# Published and predicted SCFA production from gut microbiome community models
+# NOTE: Values are approximate (read from figures / supplementary tables) — not machine-extracted.
+# Sources:
+#   Heinken et al. 2023 (AGORA2, Nature Biotechnology 41:1320)
+#   Baldini et al. 2019 (AGORA, Microbiome 7:75)
+#   Noecker et al. 2022 (MICOM benchmarks, mSystems 7:e00606-22)
+#
+# SCFA fluxes are community-level secretion rates (mmol/gDW/hr)
+# diet_context describes the simulated dietary input
+#
+source,diet_context,acetate,propionate,butyrate,total_scfa,notes
+AGORA2_western,Western diet average,3.8,1.2,0.6,5.6,Heinken2023 Fig3 median across 147 individuals
+AGORA2_highfiber,High-fiber diet (40g/day),6.9,2.3,1.3,10.5,Heinken2023 high-fiber simulation
+AGORA2_lowfiber,Low-fiber diet (10g/day),1.9,0.6,0.3,2.8,Heinken2023 low-fiber simulation
+Baldini2019_avg,Average Western diet,4.2,1.5,0.7,6.4,AGORA community FBA median
+MICOM_starchtype,Resistant starch substrate,5.1,1.8,1.1,8.0,Noecker2022 starch fermentation
+MICOM_fos,Fructo-oligosaccharide,5.5,1.6,0.9,8.0,Noecker2022 FOS fermentation
+literature_invitro,In vitro stachyose ferm.,4.8,1.7,0.9,7.4,Composite of Cummings1991 Topping2001

@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-04_tables.py -- csv tables for the manuscript.
-"""
+
 
 import pandas as pd
 from .utils import build_paths
@@ -14,14 +12,17 @@ DOSE_ORDER = {
 
 
 def main():
+
+
+
     paths = build_paths()
     df = pd.read_csv(paths.results / "merged_dose_scfa_host.csv")
 
-    # sort
+    #sort
     df["_s"] = df["condition"].map(DOSE_ORDER)
     df = df.sort_values("_s").drop(columns="_s").reset_index(drop=True)
 
-    # table 1: SCFA inputs
+    #table 1: scfa inputs
     t1 = df[["condition", "acetate_mmol_gDW_hr", "propionate_mmol_gDW_hr",
              "butyrate_mmol_gDW_hr"]].copy()
     t1.columns = ["Condition", "Acetate (mmol/gDW/hr)",
@@ -29,7 +30,7 @@ def main():
     t1.to_csv(paths.tables_dir / "table_scfa_inputs.csv", index=False)
     print("  table_scfa_inputs.csv")
 
-    # table 2: host fluxes
+    #table 2: host fluxes
     want_cols = [
         "condition", "objective_id", "objective_value", "baseline_objective",
         "objective_delta", "objective_pct_change",
@@ -42,7 +43,7 @@ def main():
     t2.to_csv(paths.tables_dir / "table_host_fluxes.csv", index=False)
     print("  table_host_fluxes.csv")
 
-    # table 3: summary
+    #table 3: summary
     summary_cols = ["condition", "objective_value"]
     for scfa in ["acetate", "propionate", "butyrate"]:
         for suf in ["_mmol_gDW_hr", "_flux"]:
@@ -59,3 +60,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

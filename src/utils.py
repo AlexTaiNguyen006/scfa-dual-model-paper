@@ -1,4 +1,4 @@
-# utils.py -- shared helpers
+#utils.py -- shared helpers
 
 import gzip
 import os
@@ -8,7 +8,7 @@ import pandas as pd
 import yaml
 
 class Paths:
-    """Holds all the directory paths the pipeline needs."""
+    
     def __init__(self, root, config_path, scfa_csv, sbml_path, results, figs_dir, tables_dir):
         self.root = root
         self.config_path = config_path
@@ -34,7 +34,7 @@ def build_paths():
     cfg = load_config(cfg_path)
 
     scfa_csv = root / "data" / "inputs" / "scfa_inputs.csv"
-    sbml = root / cfg["human_model"]["sbml_path"]
+    sbml = root / cfg["human_model"]["recon3d"]["sbml_path"]
     results_dir = root / "results"
     figs = root / "outputs" / "figs"
     tables = root / "outputs" / "tables"
@@ -46,7 +46,7 @@ def build_paths():
 
 
 def read_scfa_inputs(path, expected_conditions):
-    """Load and validate SCFA input csv."""
+    
     df = pd.read_csv(path)
 
     required_cols = {"condition", "acetate_mmol_gDW_hr",
@@ -55,7 +55,7 @@ def read_scfa_inputs(path, expected_conditions):
     if missing:
         raise ValueError(f"SCFA input is missing columns: {missing}")
 
-    # conditions should match config
+    #conditions should match config
     df["condition"] = df["condition"].astype(str)
     got = set(df["condition"])
     want = set(expected_conditions)
@@ -64,12 +64,12 @@ def read_scfa_inputs(path, expected_conditions):
             f"Condition mismatch!\n  config says: {sorted(want)}\n  csv has: {sorted(got)}"
         )
 
-    # no negatives
+    #no negatives
     for col in ["acetate_mmol_gDW_hr", "propionate_mmol_gDW_hr", "butyrate_mmol_gDW_hr"]:
         if (df[col] < 0).any():
             raise ValueError(f"Negative values in {col}")
 
-    # sort high->low
+    #sort high->low
     order = {"StachysDose_High": 0, "StachysDose_Mid": 1, "StachysDose_Low": 2}
     df["_sort"] = df["condition"].map(order)
     df = df.sort_values("_sort").drop(columns="_sort").reset_index(drop=True)
@@ -77,7 +77,7 @@ def read_scfa_inputs(path, expected_conditions):
 
 
 def decompress_gz(sbml_path):
-    """Decompress .xml.gz to cache/ if needed."""
+    
     if sbml_path.suffix != ".gz":
         return sbml_path
 
@@ -93,3 +93,4 @@ def decompress_gz(sbml_path):
         with open(out_path, "wb") as fout:
             fout.write(fin.read())
     return out_path
+

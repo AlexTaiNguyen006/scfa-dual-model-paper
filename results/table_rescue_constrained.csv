@@ -1,0 +1,5 @@
+Condition,Recon3D_orig_PPA,Rescued_unconstrained_PPA,Rescued_constrained_PPA,Human_GEM_PPA,Recon3D_orig_ATPM,Rescued_unconstrained_ATPM,Rescued_constrained_ATPM,Human_GEM_ATPM
+Baseline,0.0,0.0,0.0,0.0,34.71,256.96,34.71,34.87
+Low,0.0,-0.7,-0.7,-0.7,59.51,273.54,71.06,70.84
+Mid,0.0,-1.4,-1.4,-1.4,84.31,290.13,107.41,106.82
+High,0.0,-2.8,-2.8,-2.8,133.91,323.29,180.11,178.77

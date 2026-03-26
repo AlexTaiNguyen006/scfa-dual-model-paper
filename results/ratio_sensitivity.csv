@@ -1,0 +1,13 @@
+model,ratio_profile,acetate_frac,propionate_frac,butyrate_frac,acetate,propionate,butyrate,ATPM
+Recon3D,Stachyose-like (65:23:13),0.645,0.226,0.129,3.999,1.401,0.8,84.2993
+Recon3D,Inulin-like (65:20:15),0.65,0.2,0.15,4.03,1.24,0.93,87.4117
+Recon3D,High-butyrate (55:15:30),0.55,0.15,0.3,3.41,0.93,1.86,102.9117
+Recon3D,High-propionate (50:35:15),0.5,0.35,0.15,3.1,2.17,0.93,79.9717
+Recon3D,Acetate-dominated (80:10:10),0.8,0.1,0.1,4.96,0.62,0.62,88.0317
+Recon3D,Equimolar (33:33:33),0.333,0.333,0.333,2.065,2.065,2.065,96.6497
+Human-GEM,Stachyose-like (65:23:13),0.645,0.226,0.129,3.999,1.401,0.8,106.8232
+Human-GEM,Inulin-like (65:20:15),0.65,0.2,0.15,4.03,1.24,0.93,107.485
+Human-GEM,High-butyrate (55:15:30),0.55,0.15,0.3,3.41,0.93,1.86,118.1025
+Human-GEM,High-propionate (50:35:15),0.5,0.35,0.15,3.1,2.17,0.93,113.995
+Human-GEM,Acetate-dominated (80:10:10),0.8,0.1,0.1,4.96,0.62,0.62,98.8825
+Human-GEM,Equimolar (33:33:33),0.333,0.333,0.333,2.065,2.065,2.065,128.8068
