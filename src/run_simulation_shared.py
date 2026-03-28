@@ -8,23 +8,23 @@ from cobra.io import read_sbml_model
 
 
 #reaction id candidates (recon3d + human-gem ids)
-SCFA_EXCHANGE_IDS  {
+SCFA_EXCHANGE_IDS = {
     "acetate":    ["EX_ac_e", "EX_ac[e]", "EX_ac(e)", "MAR09086"],
     "propionate": ["EX_ppa_e", "EX_propn_e", "EX_ppn_e", "EX_ppa[e]", "MAR09808"],
     "butyrate":   ["EX_but_e", "EX_btn_e", "EX_but[e]", "MAR09809"],
 }
-GLUCOSE_IDS  ["EX_glc__D_e", "EX_glc_D_e", "EX_glc[e]", "MAR09034"]
-O2_IDS       ["EX_o2_e", "EX_o2[e]", "MAR09048"]
-CO2_IDS      ["EX_co2_e", "EX_co2[e]", "MAR09058"]
-ATPM_IDS     ["ATPM", "DM_atp_c_"]
+GLUCOSE_IDS = ["EX_glc__D_e", "EX_glc_D_e", "EX_glc[e]", "MAR09034"]
+O2_IDS = ["EX_o2_e", "EX_o2[e]", "MAR09048"]
+CO2_IDS = ["EX_co2_e", "EX_co2[e]", "MAR09058"]
+ATPM_IDS = ["ATPM", "DM_atp_c_"]
 
 #medium components (recon3d ex_ + human-gem mar ids)
-FREE_EXCHANGE  [
+FREE_EXCHANGE = [
     "EX_h2o_e", "EX_h_e", "EX_h2o[e]", "EX_h[e]",
     "MAR09047", "MAR09079",  #human-gem: h2o, h+
 ]
 
-IONS  {
+IONS = {
     "EX_pi_e": 10, "EX_so4_e": 10, "EX_k_e": 10, "EX_na1_e": 10,
     "EX_ca2_e": 10, "EX_cl_e": 10, "EX_mg2_e": 10, "EX_fe2_e": 10,
     "EX_pi[e]": 10, "EX_so4[e]": 10, "EX_k[e]": 10, "EX_na1[e]": 10,
@@ -35,13 +35,13 @@ IONS  {
     "MAR13072": 10,
 }
 
-SECRETION_RXNS  {
+SECRETION_RXNS = {
     "EX_co2_e": 1000, "EX_nh4_e": 100,
     "EX_co2[e]": 1000, "EX_nh4[e]": 100,
     "MAR09058": 1000, "MAR11420": 100,  #human-gem: co2, nh4+
 }
 
-ESSENTIAL_AA  [
+ESSENTIAL_AA = [
     "EX_his__L_e", "EX_ile__L_e", "EX_leu__L_e", "EX_lys__L_e",
     "EX_met__L_e", "EX_phe__L_e", "EX_thr__L_e", "EX_trp__L_e",
     "EX_val__L_e",
@@ -54,7 +54,7 @@ ESSENTIAL_AA  [
     "MAR09046",  #val
 ]
 
-VITAMINS  [
+VITAMINS = [
     "EX_thm_e", "EX_ribflv_e", "EX_ncam_e", "EX_pnto__R_e",
     "EX_pydxn_e", "EX_fol_e", "EX_cbl1_e", "EX_chol_e", "EX_inost_e",
     "EX_thm[e]", "EX_ribflv[e]", "EX_ncam[e]", "EX_pnto__R[e]",
@@ -73,7 +73,7 @@ VITAMINS  [
 
 #(canonical_id, label, group, [candidate_reaction_ids])
 #candidate list: first match found in the model is used
-PATHWAY_RXNS  [
+PATHWAY_RXNS = [
     ("PYK",         "Pyruvate kinase",        "Glycolysis",
      ["PYK", "MAR04358"]),
     ("PDHm",        "Pyruvate dehydrogenase", "Glycolysis",
@@ -111,23 +111,23 @@ PATHWAY_RXNS  [
 ]
 
 
-def _find_rxn(model, id_list, silentFalse):
+def _find_rxn(model, id_list, silent=False):
     
     for rid in id_list:
         if rid in model.reactions:
             return model.reactions.get_by_id(rid)
     if not silent:
         import sys
-        print(f"  WARNING: none of {id_list} found in model", filesys.stderr)
+        print(f"  WARNING: none of {id_list} found in model", file=sys.stderr)
     return None
 
 
 def setup_medium(model, cfg):
     
-    sim_cfg  cfg["host_simulation"]
+    sim_cfg = cfg["host_simulation"]
 
     #identify boundary (exchange/demand/sink) reactions model-agnostically
-    boundary_ids  set()
+    boundary_ids = set()
     for rxn in model.boundary:
         boundary_ids.add(rxn.id)
     #also include anything with ex_/dm_/sink_/sk_ prefix
@@ -140,47 +140,47 @@ def setup_medium(model, cfg):
         if rxn.id in boundary_ids:
             continue
         if rxn.lower_bound < -500:
-            rxn.lower_bound  -500
+            rxn.lower_bound = -500
         if rxn.upper_bound > 500:
-            rxn.upper_bound  500
+            rxn.upper_bound = 500
 
     #close all boundary reactions
     for rid in boundary_ids:
-        model.reactions.get_by_id(rid).bounds  (0, 0)
+        model.reactions.get_by_id(rid).bounds = (0, 0)
 
     for rid in FREE_EXCHANGE:
         if rid in model.reactions:
-            model.reactions.get_by_id(rid).bounds  (-1000, 1000)
+            model.reactions.get_by_id(rid).bounds = (-1000, 1000)
 
     for rid, ub in IONS.items():
         if rid in model.reactions:
-            model.reactions.get_by_id(rid).bounds  (-ub, 100)
+            model.reactions.get_by_id(rid).bounds = (-ub, 100)
 
     for rid, ub in SECRETION_RXNS.items():
         if rid in model.reactions:
-            model.reactions.get_by_id(rid).bounds  (0, ub)
+            model.reactions.get_by_id(rid).bounds = (0, ub)
 
     for rid in ["EX_nh4_e", "EX_nh4[e]", "MAR11420"]:
         if rid in model.reactions:
-            model.reactions.get_by_id(rid).lower_bound  -0.5
+            model.reactions.get_by_id(rid).lower_bound = -0.5
 
-    o2_uptake  float(sim_cfg["oxygen_uptake"])
-    o2_rxn  _find_rxn(model, O2_IDS)
+    o2_uptake = float(sim_cfg["oxygen_uptake"])
+    o2_rxn = _find_rxn(model, O2_IDS)
     if o2_rxn:
-        o2_rxn.bounds  (-o2_uptake, 0)
+        o2_rxn.bounds = (-o2_uptake, 0)
 
-    glc_uptake  float(sim_cfg["glucose_uptake"])
-    glc_rxn  _find_rxn(model, GLUCOSE_IDS)
+    glc_uptake = float(sim_cfg["glucose_uptake"])
+    glc_rxn = _find_rxn(model, GLUCOSE_IDS)
     if glc_rxn:
-        glc_rxn.bounds  (-glc_uptake, 0)
+        glc_rxn.bounds = (-glc_uptake, 0)
 
-    aa_rate  float(sim_cfg.get("amino_acid_uptake", 0.01))
+    aa_rate = float(sim_cfg.get("amino_acid_uptake", 0.01))
     for rid in ESSENTIAL_AA:
         if rid in model.reactions:
-            model.reactions.get_by_id(rid).bounds  (-aa_rate, 0)
+            model.reactions.get_by_id(rid).bounds = (-aa_rate, 0)
 
-    vit_rate  float(sim_cfg.get("vitamin_uptake", 0.01))
+    vit_rate = float(sim_cfg.get("vitamin_uptake", 0.01))
     for rid in VITAMINS:
         if rid in model.reactions:
-            model.reactions.get_by_id(rid).bounds  (-vit_rate, 0)
+            model.reactions.get_by_id(rid).bounds = (-vit_rate, 0)
 

@@ -21,3 +21,4 @@ _verify.py
 
 # old figure naming convention
 outputs/figs/Figure*scfa.png
+outputs/figs/_tmp/
