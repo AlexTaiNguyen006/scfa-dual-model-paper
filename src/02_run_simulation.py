@@ -1,189 +1,65 @@
 #!/usr/bin/env python3
+"""Run FBA on Recon3D and Human-GEM with SCFA dose conditions.
 
+Outputs
+  results/host_fluxes_by_condition.csv  (both models)
+  results/merged_dose_scfa_host.csv     (Recon3D only, for backward compat)
+  results/model_comparison.csv          (side-by-side ATPM + propionate)
+  results/fva_ranges.csv                (99% optimality FVA)
+"""
 
 import pandas as pd
 import numpy as np
 import cobra
 from cobra.io import read_sbml_model
+from cobra.flux_analysis import flux_variability_analysis
 
 from .utils import build_paths, load_config, decompress_gz, read_scfa_inputs
+from .run_simulation_shared import (
+    SCFA_EXCHANGE_IDS, GLUCOSE_IDS, O2_IDS, CO2_IDS, ATPM_IDS,
+    PATHWAY_RXNS, _find_rxn, setup_medium,
+)
 
-
-#recon3d uses inconsistent naming for exchange rxns
-SCFA_EXCHANGE_IDS = {
-    "acetate":    ["EX_ac_e", "EX_ac[u]", "EX_ac(e)"],
-    "propionate": ["EX_ppa_e", "EX_propn_e", "EX_ppn_e"],
-    "butyrate":   ["EX_but_e", "EX_btn_e"],
+# Human-GEM ATPM stoichiometry (for adding demand reaction)
+_HGEM_ATPM_METS = {
+    "MAM01371c": -1, "MAM02040c": -1,
+    "MAM01285c": 1,  "MAM02751c": 1,  "MAM02039c": 1,
 }
-GLUCOSE_IDS = ["EX_glc__D_e", "EX_glc_D_e", "EX_glc[e]"]
-O2_IDS      = ["EX_o2_e", "EX_o2[e]"]
-ATPM_IDS    = ["ATPM", "DM_atp_c_"]
-
-
-#medium components
-FREE_EXCHANGE = ["EX_h2o_e", "EX_h_e"]
-
-#inorganic ions
-IONS = {
-    "EX_pi_e": 10, "EX_so4_e": 10, "EX_k_e": 10, "EX_na1_e": 10,
-    "EX_ca2_e": 10, "EX_cl_e": 10, "EX_mg2_e": 10, "EX_fe2_e": 10,
-}
-
-#secretion
-SECRETION_RXNS = {"EX_co2_e": 1000, "EX_nh4_e": 100}
-
-#essential aas
-ESSENTIAL_AA = [
-    "EX_his__L_e", "EX_ile__L_e", "EX_leu__L_e", "EX_lys__L_e",
-    "EX_met__L_e", "EX_phe__L_e", "EX_thr__L_e", "EX_trp__L_e",
-    "EX_val__L_e",
-]
-
-VITAMINS = [
-    "EX_thm_e", "EX_ribflv_e", "EX_ncam_e", "EX_pnto__R_e",
-    "EX_pydxn_e", "EX_fol_e", "EX_cbl1_e", "EX_chol_e", "EX_inost_e",
-]
-
-#pathway reactions to read out
-PATHWAY_RXNS = [
-    ("PYK",         "pyruvate kinase"),
-    ("PDHm",        "pyruvate dehydrogenase"),
-    ("CSm",         "citrate synthase"),
-    ("ACONTm",      "aconitase"),
-    ("ICDHxm",      "isocitrate DH"),
-    ("AKGDm",       "alpha-KG DH"),
-    ("SUCDi",       "succinate DH"),
-    ("FUMm",        "fumarase"),
-    ("MDHm",        "malate DH"),
-    ("PCm",         "pyruvate carboxylase"),
-    ("PEPCK",       "PEPCK"),
-    ("G6PDH2r",     "G6PD"),
-    ("FBA",         "aldolase"),
-    ("PFK",         "PFK"),
-    ("ATPS4mi",     "ATP synthase"),
-    ("NADH2_u10mi", "complex I"),
-    ("CYOOm3i",     "complex IV"),
-]
-
-
-def _find_rxn(model, id_list):
-    
-    for rid in id_list:
-        if rid in model.reactions:
-            return model.reactions.get_by_id(rid)
-    return None
-
-
-def setup_medium(model, cfg):
-    
-    sim_cfg = cfg["host_simulation"]
-
-    #cap internal reactions
-    n_capped = 0
-    for rxn in model.reactions:
-        if rxn.id.startswith(("EX_", "DM_", "sink_", "SK_")):
-            continue
-        if rxn.lower_bound < -500:
-            rxn.lower_bound = -500
-            n_capped += 1
-        if rxn.upper_bound > 500:
-            rxn.upper_bound = 500
-            n_capped += 1
-
-    #close all boundary rxns
-    n_closed = 0
-    for rxn in model.reactions:
-        if rxn.id.startswith(("EX_", "DM_", "sink_", "SK_")):
-            rxn.bounds = (0, 0)
-            n_closed += 1
-    print(f"  capped {n_capped} internal bounds, closed {n_closed} boundary rxns")
-
-    #reopen essentials
-    for rid in FREE_EXCHANGE:
-        if rid in model.reactions:
-            model.reactions.get_by_id(rid).bounds = (-1000, 1000)
-
-    #ions
-    for rid, ub in IONS.items():
-        if rid in model.reactions:
-            model.reactions.get_by_id(rid).bounds = (-ub, 100)
-
-    #secretion
-    for rid, ub in SECRETION_RXNS.items():
-        if rid in model.reactions:
-            model.reactions.get_by_id(rid).bounds = (0, ub)
-    #small nh4 uptake
-    if "EX_nh4_e" in model.reactions:
-        model.reactions.get_by_id("EX_nh4_e").lower_bound = -0.5
-
-    #o2
-    o2_uptake = float(sim_cfg["oxygen_uptake"])
-    o2_rxn = _find_rxn(model, O2_IDS)
-    if o2_rxn:
-        o2_rxn.bounds = (-o2_uptake, 0)
-
-    #glucose (scarce on purpose)
-    glc_uptake = float(sim_cfg["glucose_uptake"])
-    glc_rxn = _find_rxn(model, GLUCOSE_IDS)
-    if glc_rxn:
-        glc_rxn.bounds = (-glc_uptake, 0)
-
-    #aas
-    aa_rate = float(sim_cfg.get("amino_acid_uptake", 0.01))
-    for rid in ESSENTIAL_AA:
-        if rid in model.reactions:
-            model.reactions.get_by_id(rid).bounds = (-aa_rate, 0)
-
-    #vitamins
-    vit_rate = float(sim_cfg.get("vitamin_uptake", 0.01))
-    for rid in VITAMINS:
-        if rid in model.reactions:
-            model.reactions.get_by_id(rid).bounds = (-vit_rate, 0)
 
 
 def collect_pathway_fluxes(model, solution):
     result = {}
-    for rid, _label in PATHWAY_RXNS:
-        if rid in model.reactions:
-            val = solution.fluxes.get(rid, float("nan"))
-            result[f"pathway_{rid}"] = float(val)
+    for canonical_id, label, group, candidates in PATHWAY_RXNS:
+        rxn = _find_rxn(model, candidates, silent=True)
+        if rxn:
+            val = solution.fluxes.get(rxn.id, float("nan"))
+            result[f"pathway_{canonical_id}"] = float(val)
         else:
-            result[f"pathway_{rid}"] = float("nan")
+            result[f"pathway_{canonical_id}"] = float("nan")
     return result
 
 
-def main():
-
-
-
-
-    paths = build_paths()
-    cfg = load_config(paths.config_path)
-    conditions = cfg["project"]["conditions"]
-
-
-    scfa_df = read_scfa_inputs(
-        paths.results / "scfa_inputs_canonical.csv", conditions
-    )
-
-    #load model
-    sbml_file = decompress_gz(paths.sbml_path)
-    print(f"loading model from {sbml_file}...")
-    model = read_sbml_model(str(sbml_file))
-    print(f"  loaded: {len(model.reactions)} rxns, {len(model.metabolites)} mets")
-
-    #set up medium
+def _setup_model(model, model_label, cfg):
+    """Apply hepatocyte medium, set ATPM objective, locate SCFA exchanges."""
     setup_medium(model, cfg)
 
-    #objective = atpm
-    atpm_rxn = _find_rxn(model, ATPM_IDS)
+    atpm_rxn = _find_rxn(model, ATPM_IDS, silent=True)
     if atpm_rxn is None:
-        raise RuntimeError("can't find ATPM reaction")
+        if "ATPM_added" in model.reactions:
+            atpm_rxn = model.reactions.get_by_id("ATPM_added")
+        else:
+            atpm_rxn = cobra.Reaction("ATPM_added")
+            atpm_rxn.name = "ATP maintenance (added)"
+            model.add_reactions([atpm_rxn])
+            mets = {}
+            for met_id, coeff in _HGEM_ATPM_METS.items():
+                if met_id in model.metabolites:
+                    mets[model.metabolites.get_by_id(met_id)] = coeff
+            atpm_rxn.add_metabolites(mets)
+
     atpm_rxn.bounds = (0, 500)
     model.objective = atpm_rxn
-    print(f"objective: {atpm_rxn.id}")
 
-    #scfa exchange rxns
     scfa_rxns = {}
     for name, candidates in SCFA_EXCHANGE_IDS.items():
         scfa_rxns[name] = _find_rxn(model, candidates)
@@ -192,70 +68,160 @@ def main():
 
     glc_rxn = _find_rxn(model, GLUCOSE_IDS)
     o2_rxn = _find_rxn(model, O2_IDS)
+    co2_rxn = _find_rxn(model, CO2_IDS, silent=True)
+    return atpm_rxn, scfa_rxns, glc_rxn, o2_rxn, co2_rxn
 
-    #baseline
-    print("\nrunning baseline (no SCFAs)...")
+
+def _run_model(model, model_label, scfa_df, cfg):
+    """Run baseline + dose conditions for one model; return list of dicts."""
+    atpm_rxn, scfa_rxns, glc_rxn, o2_rxn, co2_rxn = _setup_model(
+        model, model_label, cfg)
+
+    # baseline (no SCFAs)
+    print(f"\n  [{model_label}] baseline...")
     baseline = model.optimize()
     baseline_atpm = float(baseline.objective_value or 0)
-    print(f"  baseline ATPM = {baseline_atpm:.4f}")
+    print(f"    baseline ATPM = {baseline_atpm:.4f}")
 
-    #dose conditions
     rows = []
     for _, row in scfa_df.iterrows():
         cond = row["condition"]
-        ac_dose  = float(row["acetate_mmol_gDW_hr"])
-        ppa_dose = float(row["propionate_mmol_gDW_hr"])
-        but_dose = float(row["butyrate_mmol_gDW_hr"])
+        ac  = float(row["acetate_mmol_gDW_hr"])
+        ppa = float(row["propionate_mmol_gDW_hr"])
+        but = float(row["butyrate_mmol_gDW_hr"])
 
-        print(f"\nrunning {cond}...")
-
-        #context manager resets bounds after
         with model:
-            for scfa_name, dose in [("acetate", ac_dose),
-                                     ("propionate", ppa_dose),
-                                     ("butyrate", but_dose)]:
-                rxn = scfa_rxns.get(scfa_name)
+            for name, dose in [("acetate", ac), ("propionate", ppa),
+                               ("butyrate", but)]:
+                rxn = scfa_rxns.get(name)
                 if rxn and dose > 0:
                     rxn.bounds = (-dose, 0)
 
             sol = model.optimize()
             atpm_val = float(sol.objective_value or 0)
             delta = atpm_val - baseline_atpm
-            pct_change = 100.0 * delta / baseline_atpm if baseline_atpm else float("nan")
+            pct = 100.0 * delta / baseline_atpm if baseline_atpm else float("nan")
 
-            def get_flux(r):
+            def flux(r):
                 return float(sol.fluxes.get(r.id, 0)) if r else None
 
             result = {
+                "model": model_label,
                 "condition": cond,
                 "objective_id": atpm_rxn.id,
                 "objective_value": atpm_val,
                 "baseline_objective": baseline_atpm,
                 "objective_delta": delta,
-                "objective_pct_change": pct_change,
-                "glucose_flux": get_flux(glc_rxn),
-                "oxygen_flux": get_flux(o2_rxn),
-                "co2_flux": float(sol.fluxes.get("EX_co2_e", 0)),
-                "acetate_flux": get_flux(scfa_rxns.get("acetate")),
-                "propionate_flux": get_flux(scfa_rxns.get("propionate")),
-                "butyrate_flux": get_flux(scfa_rxns.get("butyrate")),
+                "objective_pct_change": pct,
+                "glucose_flux": flux(glc_rxn),
+                "oxygen_flux": flux(o2_rxn),
+                "co2_flux": flux(co2_rxn),
+                "acetate_flux": flux(scfa_rxns.get("acetate")),
+                "propionate_flux": flux(scfa_rxns.get("propionate")),
+                "butyrate_flux": flux(scfa_rxns.get("butyrate")),
+                "solver": str(sol.solver),
             }
             result.update(collect_pathway_fluxes(model, sol))
             rows.append(result)
+            print(f"    {cond}: ATPM={atpm_val:.2f} ({pct:+.1f}%)")
 
-            print(f"  ATPM = {atpm_val:.2f}  ({pct_change:+.1f}% vs baseline)")
+    return rows, baseline_atpm, atpm_rxn, scfa_rxns, co2_rxn, o2_rxn
 
-    #save
-    host_df = pd.DataFrame(rows)
+
+def _run_fva(model, model_label, scfa_df, atpm_rxn, scfa_rxns, co2_rxn, o2_rxn):
+    """Run FVA at 99% optimality for ATPM and key exchanges."""
+    targets = [atpm_rxn]
+    for name in ["acetate", "propionate", "butyrate"]:
+        if scfa_rxns.get(name):
+            targets.append(scfa_rxns[name])
+    if co2_rxn:
+        targets.append(co2_rxn)
+    if o2_rxn:
+        targets.append(o2_rxn)
+
+    rows = []
+    for _, row in scfa_df.iterrows():
+        cond = row["condition"]
+        ac  = float(row["acetate_mmol_gDW_hr"])
+        ppa = float(row["propionate_mmol_gDW_hr"])
+        but = float(row["butyrate_mmol_gDW_hr"])
+        with model:
+            for name, dose in [("acetate", ac), ("propionate", ppa),
+                               ("butyrate", but)]:
+                rxn = scfa_rxns.get(name)
+                if rxn and dose > 0:
+                    rxn.bounds = (-dose, 0)
+            fva = flux_variability_analysis(
+                model, reaction_list=targets, fraction_of_optimum=0.99)
+            for rxn_id in fva.index:
+                fmin = float(fva.loc[rxn_id, "minimum"])
+                fmax = float(fva.loc[rxn_id, "maximum"])
+                rows.append({
+                    "model": model_label,
+                    "condition": cond,
+                    "reaction": rxn_id,
+                    "fva_minimum": round(fmin, 4),
+                    "fva_maximum": round(fmax, 4),
+                })
+        print(f"    [{model_label}] FVA {cond}: done")
+    return rows
+
+
+def main():
+    paths = build_paths()
+    cfg = load_config(paths.config_path)
+    conditions = cfg["project"]["conditions"]
+    scfa_df = read_scfa_inputs(
+        paths.results / "scfa_inputs_canonical.csv", conditions)
+
+    all_rows = []
+    fva_rows = []
+
+    # Recon3D
+    sbml_file = decompress_gz(paths.sbml_path)
+    print(f"loading Recon3D from {sbml_file}")
+    recon = read_sbml_model(str(sbml_file))
+    print(f"  {len(recon.reactions)} rxns, {len(recon.metabolites)} mets")
+    rows_r, bl_r, atpm_r, scfa_r, co2_r, o2_r = _run_model(
+        recon, "Recon3D", scfa_df, cfg)
+    all_rows.extend(rows_r)
+    fva_rows.extend(_run_fva(recon, "Recon3D", scfa_df,
+                             atpm_r, scfa_r, co2_r, o2_r))
+
+    # Human-GEM
+    hgem_path = paths.human_gem_path
+    if hgem_path and hgem_path.exists():
+        print(f"\nloading Human-GEM from {hgem_path}")
+        hgem = read_sbml_model(str(hgem_path))
+        print(f"  {len(hgem.reactions)} rxns, {len(hgem.metabolites)} mets")
+        rows_h, bl_h, atpm_h, scfa_h, co2_h, o2_h = _run_model(
+            hgem, "Human-GEM", scfa_df, cfg)
+        all_rows.extend(rows_h)
+        fva_rows.extend(_run_fva(hgem, "Human-GEM", scfa_df,
+                                 atpm_h, scfa_h, co2_h, o2_h))
+
+    # save host_fluxes_by_condition.csv (both models)
+    host_df = pd.DataFrame(all_rows)
     host_df.to_csv(paths.results / "host_fluxes_by_condition.csv", index=False)
 
-    merged = scfa_df.merge(host_df, on="condition", how="left")
+    # merged: Recon3D only (backward compat for 03_figures.py input data)
+    recon_df = host_df[host_df["model"] == "Recon3D"].drop(columns="model")
+    merged = scfa_df.merge(recon_df, on="condition", how="left")
     merged.to_csv(paths.results / "merged_dose_scfa_host.csv", index=False)
 
-    print("\n--- done ---")
+    # model_comparison.csv
+    mc = host_df[["model", "condition", "objective_value",
+                   "objective_pct_change", "propionate_flux"]].copy()
+    mc.to_csv(paths.results / "model_comparison.csv", index=False)
+
+    # fva_ranges.csv
+    pd.DataFrame(fva_rows).to_csv(
+        paths.results / "fva_ranges.csv", index=False)
+
+    print("\ndone")
     for _, r in host_df.iterrows():
-        print(f"  {r['condition']:25s} ATPM={r['objective_value']:.2f}  "
-              f"delta={r['objective_pct_change']:+.1f}%")
+        print(f"  {r['model']:12s} {r['condition']:25s} "
+              f"ATPM={r['objective_value']:.2f}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,5 @@
+Condition,Recon3D Original,Recon3D Rescued,Human-GEM,Convergence
+Baseline,34.71,34.71,34.87,-0.5%
+Low,59.51,71.06,70.84,+0.3%
+Mid,84.31,107.41,106.82,+0.6%
+High,133.91,180.11,178.77,+0.7%

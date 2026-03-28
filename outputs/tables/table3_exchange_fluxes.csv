@@ -1,0 +1,7 @@
+Model,Condition,Glucose,O2,CO2,Acetate,Propionate,Butyrate
+Human-GEM,High,-1.0,-40.6,37.5,-8.0,-2.8,-1.6
+Human-GEM,Mid,-1.0,-23.7,22.1,-4.0,-1.4,-0.8
+Human-GEM,Low,-1.0,-15.2,14.4,-2.0,-0.7,-0.4
+Recon3D,High,-1.0,-30.6,29.0,-8.0,0.0,-1.6
+Recon3D,Mid,-1.0,-18.6,17.8,-4.0,0.0,-0.8
+Recon3D,Low,-1.0,-12.6,12.2,-2.0,0.0,-0.4

@@ -65,7 +65,7 @@ def main():
     df = df.sort_values("_ord").reset_index(drop=True)
     x = np.arange(len(df))
 
-    # ── Fig 1: SCFA availability by dose ──────────────────────────
+    # Fig 1: SCFA availability by dose
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
     for scfa, col_name in [("acetate", "acetate_mmol_gDW_hr"),
                             ("propionate", "propionate_mmol_gDW_hr"),
@@ -80,7 +80,7 @@ def main():
     ax.legend()
     _save(fig, paths, "Fig1")
 
-    # ── Fig 2: SCFA molar ratios ─────────────────────────────────
+    # Fig 2: SCFA molar ratios
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
     total = (df["acetate_mmol_gDW_hr"] + df["propionate_mmol_gDW_hr"]
              + df["butyrate_mmol_gDW_hr"])
@@ -102,7 +102,7 @@ def main():
     ax.legend(loc="upper right")
     _save(fig, paths, "Fig2")
 
-    # ── Fig 3: Dual-model ATPM comparison ────────────────────────
+    # Fig 3: Dual-model ATPM comparison
     mc = pd.read_csv(paths.results / "model_comparison.csv")
     cond_order_mc = ["StachysDose_High", "StachysDose_Mid", "StachysDose_Low"]
     labels_mc = ["High", "Mid", "Low"]
@@ -123,7 +123,7 @@ def main():
     ax.legend()
     _save(fig, paths, "Fig3")
 
-    # ── Fig 4: Host exchange fluxes ──────────────────────────────
+    # Fig 4: Host exchange fluxes
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
     flux_series = [
         ("Glucose",    "glucose_flux",    COLORS["glucose"]),
@@ -145,7 +145,7 @@ def main():
     ax.legend(ncol=2, loc="lower left", fontsize=9)
     _save(fig, paths, "Fig4")
 
-    # ── Fig 5: Pathway flux heatmap ──────────────────────────────
+    # Fig 5: Pathway flux heatmap
     pw_cols = [c for c in df.columns if c.startswith("pathway_")]
     if pw_cols:
         pw = df[pw_cols].copy()
@@ -176,7 +176,7 @@ def main():
             fig.tight_layout()
             _save(fig, paths, "Fig5")
 
-    # ── Fig 6: Sensitivity analysis ──────────────────────────────
+    # Fig 6: Sensitivity analysis
     sa_path = paths.results / "sensitivity_analysis.csv"
     if sa_path.exists():
         sa = pd.read_csv(sa_path)
@@ -200,7 +200,7 @@ def main():
         fig.tight_layout()
         _save(fig, paths, "Fig6")
 
-    # ── Fig 7: Propionate rescue analysis ────────────────────────
+    # Fig 7: Propionate rescue analysis
     rescue_path = paths.results / "table_rescue_constrained.csv"
     if rescue_path.exists():
         rc = pd.read_csv(rescue_path)
@@ -256,7 +256,7 @@ def main():
         fig.tight_layout()
         _save(fig, paths, "Fig7")
 
-    # ── Fig 8: SCFA ratio sensitivity ────────────────────────────
+    # Fig 8: SCFA ratio sensitivity
     rs_path = paths.results / "ratio_sensitivity.csv"
     if rs_path.exists():
         rs = pd.read_csv(rs_path)
@@ -278,7 +278,7 @@ def main():
         fig.tight_layout()
         _save(fig, paths, "Fig8")
 
-    # ── Fig 9: pFBA comparison ───────────────────────────────────
+    # Fig 9: pFBA comparison
     pfba_path = paths.results / "pfba_comparison.csv"
     if pfba_path.exists():
         pf = pd.read_csv(pfba_path)
@@ -321,7 +321,7 @@ def main():
         fig.tight_layout()
         _save(fig, paths, "Fig9")
 
-    # ── Fig 10: Multi-threshold FVA ──────────────────────────────
+    # Fig 10: Multi-threshold FVA
     fva_path = paths.results / "fva_multi_threshold.csv"
     if fva_path.exists():
         fva = pd.read_csv(fva_path)

@@ -51,9 +51,7 @@ def _apply_condition(scfa_rxns, ac, ppa, but):
             rxn.bounds  (-dose, 0)
 
 
-#══════════════════════════════════════════════════════════════════════
 #1. scfa ratio sensitivity
-#══════════════════════════════════════════════════════════════════════
 RATIO_PROFILES  {
     "Stachyose-like (65:23:13)": (0.645, 0.226, 0.129),
     "Inulin-like (65:20:15)":    (0.650, 0.200, 0.150),
@@ -92,9 +90,7 @@ def run_ratio_sensitivity(model, model_label, cfg):
     return rows
 
 
-#══════════════════════════════════════════════════════════════════════
 #2. alternative objective (pfba)
-#══════════════════════════════════════════════════════════════════════
 COND_MAP  {
     "StachysDose_Low":  (2.0, 0.7, 0.4),
     "StachysDose_Mid":  (4.0, 1.4, 0.8),
@@ -147,9 +143,7 @@ def run_pfba_comparison(model, model_label, cfg):
     return rows
 
 
-#══════════════════════════════════════════════════════════════════════
 #3. multi-threshold fva
-#══════════════════════════════════════════════════════════════════════
 def run_multi_fva(model, model_label, cfg):
     
     atpm_rxn, scfa_rxns, glc_rxn, o2_rxn  _setup_model(model, model_label, cfg)
@@ -188,9 +182,7 @@ def run_multi_fva(model, model_label, cfg):
     return rows
 
 
-#══════════════════════════════════════════════════════════════════════
 #4. flux cap sensitivity
-#══════════════════════════════════════════════════════════════════════
 def run_flux_cap_sensitivity(model, model_label, cfg):
     
     rows  []
@@ -230,9 +222,7 @@ def run_flux_cap_sensitivity(model, model_label, cfg):
     return rows
 
 
-#══════════════════════════════════════════════════════════════════════
 #main
-#══════════════════════════════════════════════════════════════════════
 def main():
 
 

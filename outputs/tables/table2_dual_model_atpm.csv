@@ -1,0 +1,9 @@
+Model,Condition,ATPM (mmol/gDW/hr),Change (%),Propionate Flux
+Recon3D,Baseline,34.71,--,0.0
+Recon3D,High,133.91,+285.8,0.0
+Recon3D,Mid,84.31,+142.9,0.0
+Recon3D,Low,59.51,+71.4,0.0
+Human-GEM,Baseline,34.87,--,0.0
+Human-GEM,High,178.77,+412.7,-2.8
+Human-GEM,Mid,106.82,+206.4,-1.4
+Human-GEM,Low,70.84,+103.2,-0.7

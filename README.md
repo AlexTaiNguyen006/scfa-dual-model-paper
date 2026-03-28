@@ -225,13 +225,12 @@ upstream microbiome predictions without re-running the host simulations.
 - `outputs/figs/FigS1.png` — Pipeline schematic
 
 ### Tables
-- `outputs/tables/table1_scfa_vectors.csv` — Formatted SCFA conditions
-- `outputs/tables/table2a_atpm_values.csv` — Primary ATPM results
-- `outputs/tables/table2b_exchange_fluxes.csv` — Exchange flux results
-- `outputs/tables/table3_summary.csv` — Summary statistics
-- `outputs/tables/table4_fva_ranges.csv` — FVA ranges at 99% optimality
-- `outputs/tables/table5_propionate_rescue.csv` — Propionate rescue results
-- `outputs/tables/table6_atp_yield_comparison.csv` — Predicted vs published ATP yields
+- `outputs/tables/table1_scfa_vectors.csv` — SCFA input vectors (manuscript Table 1)
+- `outputs/tables/table2_dual_model_atpm.csv` — Dual-model ATPM comparison (manuscript Table 2)
+- `outputs/tables/table3_exchange_fluxes.csv` — Exchange fluxes by model and condition (manuscript Table 3)
+- `outputs/tables/table4_fva_ranges.csv` — FVA ranges at 99% optimality (manuscript Table 4)
+- `outputs/tables/table5_propionate_rescue.csv` — Propionate rescue results (manuscript Table 5)
+- `outputs/tables/table6_atp_yield_comparison.csv` — Predicted vs published ATP yields (manuscript Table 6)
 
 ## Microbiome model integration
 

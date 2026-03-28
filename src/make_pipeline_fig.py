@@ -14,7 +14,7 @@ EDGE = "#3A4C66"
 ARROW = "#3A4C66"
 SECTION = "#8EA1B1"
 
-# ── Helper ────────────────────────────────────────────────────────
+# Helper
 def _box(ax, cx, cy, w, h, title, subtitle, facecolor, fontsize_t=13, fontsize_s=8.5):
     """Draw a rounded box with title and subtitle."""
     rect = FancyBboxPatch((cx - w/2, cy - h/2), w, h,
@@ -115,7 +115,7 @@ for col, label in legend_items:
 
 plt.tight_layout()
 
-# ── Save ──────────────────────────────────────────────────────────
+# Save
 BASE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(BASE)
 out_png = os.path.join(ROOT, "outputs", "figs", "FigS1.png")
