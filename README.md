@@ -266,7 +266,8 @@ community SCFA outputs.
 ## Code availability
 
 This repository contains all code and configuration needed to reproduce
-the results from a clean checkout.
+the results from a clean checkout. The archived submission snapshot is
+available via Zenodo: https://doi.org/10.5281/zenodo.19293353.
 
 ### Reproducibility checklist
 
