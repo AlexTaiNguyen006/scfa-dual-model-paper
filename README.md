@@ -36,8 +36,8 @@ Download both models:
 
 | Model | Source | Version | Reactions | Metabolites | Genes |
 |-------|--------|---------|-----------|-------------|-------|
-| **Recon3D** | [BiGG Models](https://bigg.ucsd.edu/models/Recon3D) | BiGG Recon3D | ~13,543 | ~4,140 | ~2,248 |
-| **Human-GEM** | [GitHub](https://github.com/SysBioChalmers/Human-GEM) | v1.x | ~13,000+ | ~8,000+ | ~3,000+ |
+| **Recon3D** | [BiGG Models](https://bigg.ucsd.edu/models/Recon3D) | BiGG Recon3D | 10,600 | 5,835 | 2,248 |
+| **Human-GEM** | [GitHub](https://github.com/SysBioChalmers/Human-GEM) | v1.x | 12,971 | 8,455 | 2,887 |
 
 Place files:
 - `data/models/Recon3D.xml.gz` (will be auto-decompressed to cache)
@@ -208,18 +208,19 @@ upstream microbiome predictions without re-running the host simulations.
 - `results/fva_multi_threshold.csv` — multi-threshold FVA results
 
 ### Figures
-- `outputs/figs/figure1_scfa_availability.png` — SCFA inputs by dose
-- `outputs/figs/figure2_scfa_ratios.png` — SCFA molar ratios
-- `outputs/figs/figure3_atpm.png` — Host ATPM across dose conditions
-- `outputs/figs/figure4_atpm_pct_change.png` — % change in ATPM vs baseline
-- `outputs/figs/figure5_exchange_fluxes.png` — Host exchange fluxes
-- `outputs/figs/figure6_pathway_heatmap.png` — Pathway flux heatmap
-- `outputs/figs/figure7_model_comparison.png` — Dual-model ATPM comparison
-- `outputs/figs/figure8_sensitivity.png` — Sensitivity analysis
-- `outputs/figs/figure9_rescue.png` — Propionate rescue analysis
-- `outputs/figs/figure10_ratio_sensitivity.png` — Ratio sensitivity
-- `outputs/figs/figure11_pfba.png` — Parsimonious FBA comparison
-- `outputs/figs/figure12_fva_multi.png` — FVA solution space
+- `outputs/figs/Fig1.png` — SCFA inputs by dose
+- `outputs/figs/Fig2.png` — SCFA molar ratios
+- `outputs/figs/Fig3.png` — Host ATPM across dose conditions
+- `outputs/figs/Fig4.png` — % change in ATPM vs baseline
+- `outputs/figs/Fig5.png` — Host exchange fluxes
+- `outputs/figs/Fig6.png` — Pathway flux heatmap
+- `outputs/figs/Fig7.png` — Dual-model ATPM comparison
+- `outputs/figs/Fig8.png` — Sensitivity analysis
+- `outputs/figs/Fig9.png` — Propionate rescue analysis
+- `outputs/figs/Fig10.png` — Ratio sensitivity
+- `outputs/figs/Fig11.png` — Parsimonious FBA comparison
+- `outputs/figs/Fig12.png` — FVA solution space
+- `outputs/figs/FigS2.png` — Pipeline schematic
 
 ### Tables
 - `outputs/tables/table1_scfa_vectors.csv` — Formatted SCFA conditions

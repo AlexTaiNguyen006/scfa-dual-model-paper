@@ -9,11 +9,13 @@ import yaml
 
 class Paths:
     
-    def __init__(self, root, config_path, scfa_csv, sbml_path, results, figs_dir, tables_dir):
+    def __init__(self, root, config_path, scfa_csv, sbml_path, human_gem_path,
+                 results, figs_dir, tables_dir):
         self.root = root
         self.config_path = config_path
         self.scfa_csv = scfa_csv
         self.sbml_path = sbml_path
+        self.human_gem_path = human_gem_path
         self.results = results
         self.figs_dir = figs_dir
         self.tables_dir = tables_dir
@@ -35,6 +37,7 @@ def build_paths():
 
     scfa_csv = root / "data" / "inputs" / "scfa_inputs.csv"
     sbml = root / cfg["human_model"]["recon3d"]["sbml_path"]
+    hgem = root / cfg["human_model"]["human_gem"]["sbml_path"]
     results_dir = root / "results"
     figs = root / "outputs" / "figs"
     tables = root / "outputs" / "tables"
@@ -42,7 +45,7 @@ def build_paths():
     for d in [results_dir, figs, tables]:
         d.mkdir(parents=True, exist_ok=True)
 
-    return Paths(root, cfg_path, scfa_csv, sbml, results_dir, figs, tables)
+    return Paths(root, cfg_path, scfa_csv, sbml, hgem, results_dir, figs, tables)
 
 
 def read_scfa_inputs(path, expected_conditions):

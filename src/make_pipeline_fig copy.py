@@ -39,10 +39,6 @@ ax.text(5.0, 0.25,
 
 plt.tight_layout()
 BASE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(BASE)
-out_png = os.path.join(ROOT, "outputs", "figs", "FigS2.png")
-out_pdf = os.path.join(ROOT, "outputs", "figs", "FigS2.pdf")
-fig.savefig(out_png, dpi=300, bbox_inches='tight', facecolor='white')
-fig.savefig(out_pdf, dpi=300, bbox_inches='tight', facecolor='white')
-print(f"Saved {out_png}")
-print(f"Saved {out_pdf}")
+out = os.path.join(BASE, "figs", "figS2_pipeline.png")
+fig.savefig(out, dpi=300, bbox_inches='tight', facecolor='white')
+print(f"Saved {out}")

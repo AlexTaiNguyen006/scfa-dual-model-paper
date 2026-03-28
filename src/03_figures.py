@@ -74,9 +74,9 @@ def main():
     ax.set_ylabel("SCFA Availability (mmol/gDW/hr)")
     ax.set_title("SCFA Availability by Dose Condition")
     ax.legend()
-    fig.savefig(paths.figs_dir / "fig_scfa_inputs.png")
+    fig.savefig(paths.figs_dir / "Fig1.png")
     plt.close(fig)
-    print("  fig_scfa_inputs.png")
+    print("  Fig1.png")
 
     #molar ratios
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
@@ -98,9 +98,9 @@ def main():
     ax.set_title("SCFA Molar Ratio by Condition")
     ax.set_ylim(0, 1.05)
     ax.legend(loc="upper right")
-    fig.savefig(paths.figs_dir / "fig_scfa_ratios.png")
+    fig.savefig(paths.figs_dir / "Fig2.png")
     plt.close(fig)
-    print("  fig_scfa_ratios.png")
+    print("  Fig2.png")
 
     #objective atpm
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
@@ -117,9 +117,9 @@ def main():
     ax.set_ylabel("ATPM (mmol/gDW/hr)")
     ax.set_title("ATP Maintenance by Dose Condition")
     ax.legend()
-    fig.savefig(paths.figs_dir / "fig_host_objective.png")
+    fig.savefig(paths.figs_dir / "Fig3.png")
     plt.close(fig)
-    print("  fig_host_objective.png")
+    print("  Fig3.png")
 
     #delta
     if "objective_pct_change" in df.columns:
@@ -133,9 +133,9 @@ def main():
         ax.set_xticklabels(XLABELS)
         ax.set_ylabel("ATPM Change (%)")
         ax.set_title("% Change in ATPM vs Baseline")
-        fig.savefig(paths.figs_dir / "fig_objective_delta_pct.png")
+        fig.savefig(paths.figs_dir / "Fig4.png")
         plt.close(fig)
-        print("  fig_objective_delta_pct.png")
+        print("  Fig4.png")
 
     # exchange fluxes
     fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
@@ -157,9 +157,9 @@ def main():
     ax.set_ylabel("Flux (mmol/gDW/hr)")
     ax.set_title("Exchange Fluxes by Condition")
     ax.legend(ncol=2, loc="lower left", fontsize=9)
-    fig.savefig(paths.figs_dir / "fig_host_exchange_fluxes.png")
+    fig.savefig(paths.figs_dir / "Fig5.png")
     plt.close(fig)
-    print("  fig_host_exchange_fluxes.png")
+    print("  Fig5.png")
 
     #fig 6: pathway heatmap
     pw_cols = [c for c in df.columns if c.startswith("pathway_")]
@@ -196,9 +196,9 @@ def main():
 
             plt.colorbar(im, ax=ax, shrink=0.8)
             fig.tight_layout()
-            fig.savefig(paths.figs_dir / "fig_pathway_heatmap.png")
+            fig.savefig(paths.figs_dir / "Fig6.png")
             plt.close(fig)
-            print("  fig_pathway_heatmap.png")
+            print("  Fig6.png")
 
     print("finished")
 
