@@ -47,8 +47,8 @@ ax.axis('off')
 BW, BH = 2.6, 1.0
 
 # Section A
-ax.text(0.2, 9.55, "A", fontsize=20, fontweight='bold', family='DejaVu Sans', color='#384A5E')
-ax.text(0.2, 9.15, "Pipeline", fontsize=12, fontstyle='italic', family='DejaVu Sans', color=SECTION)
+ax.text(0.2, 9.55, "Pipeline", fontsize=12, fontstyle='italic', family='DejaVu Sans', color=SECTION)
+ax.text(0.2, 9.15, "A", fontsize=20, fontweight='bold', family='DejaVu Sans', color='#384A5E')
 
 ya = 8.25
 xs_a = [2.1, 5.3, 8.5, 11.7]
@@ -56,7 +56,7 @@ xs_a = [2.1, 5.3, 8.5, 11.7]
 _box(ax, xs_a[0], ya, BW, BH, "Dietary Input",
      "S. affinis stachyose\n(25 / 50 / 100 g tubers)", COL_INPUT)
 _box(ax, xs_a[1], ya, BW, BH, "SCFA Translation",
-     "Ac : Pr : Bu\n\u2248 65 : 23 : 13", COL_COMP)
+     "Ac : Pr : Bu\n\u2248 65 : 23 : 13", COL_INPUT)
 _box(ax, xs_a[2], ya, BW, BH, "Dual-Model FBA",
      "Recon3D  +  Human-GEM\n(ATPM objective)", COL_COMP)
 _box(ax, xs_a[3], ya, BW, BH, "Predicted ATPM",
@@ -66,8 +66,8 @@ for i in range(3):
     _arrow(ax, xs_a[i] + BW/2 + 0.05, ya, xs_a[i+1] - BW/2 - 0.05, ya)
 
 # Section B
-ax.text(0.2, 6.8, "B", fontsize=20, fontweight='bold', family='DejaVu Sans', color='#384A5E')
-ax.text(0.2, 6.4, "Robustness", fontsize=12, fontstyle='italic', family='DejaVu Sans', color=SECTION)
+ax.text(0.2, 6.8, "Robustness", fontsize=12, fontstyle='italic', family='DejaVu Sans', color=SECTION)
+ax.text(0.2, 6.4, "B", fontsize=20, fontweight='bold', family='DejaVu Sans', color='#384A5E')
 
 yb = 5.7
 xs_b = [3.1, 6.9, 10.7]
@@ -84,8 +84,8 @@ for xb in xs_b:
     _arrow(ax, xs_a[2], ya - BH/2 - 0.02, xb, yb + BH/2 + 0.02)
 
 # Section C
-ax.text(0.2, 3.9, "C", fontsize=20, fontweight='bold', family='DejaVu Sans', color='#384A5E')
-ax.text(0.2, 3.5, "Validation", fontsize=12, fontstyle='italic', family='DejaVu Sans', color=SECTION)
+ax.text(0.2, 3.9, "Validation", fontsize=12, fontstyle='italic', family='DejaVu Sans', color=SECTION)
+ax.text(0.2, 3.5, "C", fontsize=20, fontweight='bold', family='DejaVu Sans', color='#384A5E')
 
 yc = 2.9
 _box(
