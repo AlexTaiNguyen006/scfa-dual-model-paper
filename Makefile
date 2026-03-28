@@ -1,9 +1,12 @@
-.PHONY: all clean inputs simulate sensitivity rescue robustness figures tables
+.PHONY: all all-with-microbiome clean inputs simulate sensitivity rescue robustness figures tables microbiome
 
 PYTHON = python -m
 
 all: inputs simulate sensitivity rescue robustness figures tables
 	@echo "Pipeline complete."
+
+all-with-microbiome: all microbiome
+	@echo "Pipeline complete (including microbiome cross-validation)."
 
 inputs:
 	$(PYTHON) src.01_prepare_inputs

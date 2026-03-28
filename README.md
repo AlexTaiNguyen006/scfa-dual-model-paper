@@ -49,6 +49,19 @@ Place files:
 make all
 ```
 
+`make all` runs the core manuscript pipeline (Steps 1, 2, 2b, 2c, 2d, 3, 4).
+Microbiome cross-validation (Step 2a) is optional and can be run with:
+
+```bash
+make microbiome
+```
+
+To run everything including Step 2a in one command:
+
+```bash
+make all-with-microbiome
+```
+
 ### Pipeline steps
 
 | Step | Script | Description |
@@ -277,11 +290,21 @@ conda env create -f environment.yml
 conda activate stachys-scfa
 # place Recon3D.xml.gz and Human-GEM.xml in data/models/
 make all
+# optional:
+make microbiome
 ```
 
 All intermediate results are written to `results/`, figures to
-`outputs/figs/`, and formatted tables to `outputs/tables/`. No manual
-steps are required between pipeline stages.
+`outputs/figs/`, and formatted tables to `outputs/tables/`.
+
+Manual prerequisites before execution:
+- place `Recon3D.xml.gz` and `Human-GEM.xml` in `data/models/`
+- run `make microbiome` only if `data/inputs/agora2_community_scfa.csv` is present
+
+No manual steps are required between pipeline stages once prerequisites are met.
+
+For submission-facing reproducibility details (versions, exact commands,
+expected output checks), see `docs/reproducibility_submission_checklist.md`.
 
 ### Software versions
 
