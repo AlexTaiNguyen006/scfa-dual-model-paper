@@ -59,7 +59,7 @@ make all
 | 2b | `02b_sensitivity.py` | One-at-a-time sensitivity analysis |
 | 2c | `02c_rescue.py` | PPCOACm propionate pathway rescue |
 | 2d | `02d_robustness.py` | Ratio sensitivity, pFBA, multi-threshold FVA |
-| 3 | `03_figures.py` | All manuscript figures (12 figures) |
+| 3 | `03_figures.py` | All manuscript figures (10 main + 1 supplementary) |
 | 4 | `04_tables.py` | Formatted CSV tables |
 
 Individual steps:
@@ -68,9 +68,9 @@ python -m src.01_prepare_inputs
 python -m src.02_run_simulation
 python -m src.02a_microbiome_integration
 python -m src.02b_sensitivity
-python src/02c_rescue.py
+python -m src.02c_rescue
 python -m src.02d_robustness
-python src/03_figures.py
+python -m src.03_figures
 python -m src.04_tables
 ```
 
@@ -206,27 +206,32 @@ upstream microbiome predictions without re-running the host simulations.
 - `results/ratio_sensitivity.csv` — SCFA ratio sensitivity results
 - `results/pfba_comparison.csv` — parsimonious FBA comparison
 - `results/fva_multi_threshold.csv` — multi-threshold FVA results
+- `results/flux_cap_sensitivity.csv` — internal flux cap sensitivity sweep
+- `results/fva_ranges.csv` — FVA ranges at default (99%) optimality
+- `results/scfa_inputs_canonical.csv` — validated canonical SCFA inputs
+- `results/table_rescue_constrained.csv` — constrained propionate rescue results
 
 ### Figures
 - `outputs/figs/Fig1.png` — SCFA inputs by dose
 - `outputs/figs/Fig2.png` — SCFA molar ratios
-- `outputs/figs/Fig3.png` — Host ATPM across dose conditions
-- `outputs/figs/Fig4.png` — % change in ATPM vs baseline
-- `outputs/figs/Fig5.png` — Host exchange fluxes
-- `outputs/figs/Fig6.png` — Pathway flux heatmap
-- `outputs/figs/Fig7.png` — Dual-model ATPM comparison
-- `outputs/figs/Fig8.png` — Sensitivity analysis
-- `outputs/figs/Fig9.png` — Propionate rescue analysis
-- `outputs/figs/Fig10.png` — Ratio sensitivity
-- `outputs/figs/Fig11.png` — Parsimonious FBA comparison
-- `outputs/figs/Fig12.png` — FVA solution space
-- `outputs/figs/FigS2.png` — Pipeline schematic
+- `outputs/figs/Fig3.png` — Dual-model ATPM comparison
+- `outputs/figs/Fig4.png` — Host exchange fluxes
+- `outputs/figs/Fig5.png` — Pathway flux heatmap
+- `outputs/figs/Fig6.png` — Sensitivity analysis
+- `outputs/figs/Fig7.png` — Propionate rescue analysis
+- `outputs/figs/Fig8.png` — SCFA ratio sensitivity
+- `outputs/figs/Fig9.png` — Parsimonious FBA comparison
+- `outputs/figs/Fig10.png` — FVA solution space
+- `outputs/figs/FigS1.png` — Pipeline schematic
 
 ### Tables
 - `outputs/tables/table1_scfa_vectors.csv` — Formatted SCFA conditions
 - `outputs/tables/table2a_atpm_values.csv` — Primary ATPM results
 - `outputs/tables/table2b_exchange_fluxes.csv` — Exchange flux results
 - `outputs/tables/table3_summary.csv` — Summary statistics
+- `outputs/tables/table4_fva_ranges.csv` — FVA ranges at 99% optimality
+- `outputs/tables/table5_propionate_rescue.csv` — Propionate rescue results
+- `outputs/tables/table6_atp_yield_comparison.csv` — Predicted vs published ATP yields
 
 ## Microbiome model integration
 

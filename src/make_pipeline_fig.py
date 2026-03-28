@@ -1,4 +1,4 @@
-"""Generate pipeline schematic figure (Figure S2)."""
+"""Generate pipeline schematic figure (Figure S1)."""
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -40,8 +40,8 @@ ax.text(5.0, 0.25,
 plt.tight_layout()
 BASE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(BASE)
-out_png = os.path.join(ROOT, "outputs", "figs", "FigS2.png")
-out_pdf = os.path.join(ROOT, "outputs", "figs", "FigS2.pdf")
+out_png = os.path.join(ROOT, "outputs", "figs", "FigS1.png")
+out_pdf = os.path.join(ROOT, "outputs", "figs", "FigS1.pdf")
 fig.savefig(out_png, dpi=300, bbox_inches='tight', facecolor='white')
 fig.savefig(out_pdf, dpi=300, bbox_inches='tight', facecolor='white')
 print(f"Saved {out_png}")

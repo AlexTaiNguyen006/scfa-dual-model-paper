@@ -269,7 +269,7 @@ ax_b.spines["top"].set_visible(False)
 ax_b.spines["right"].set_visible(False)
 
 plt.tight_layout()
-fig_out  os.path.join(FIGS, "fig7_rescue.png")
+fig_out  os.path.join(FIGS, "Fig7.png")
 plt.savefig(fig_out, dpi150, bbox_inches"tight")
 plt.close()
 print(f"Saved rescue figure to {fig_out}")
