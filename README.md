@@ -202,6 +202,14 @@ the host model responds across biologically plausible SCFA inputs.
 
 ## Outputs
 
+| Directory | Contents | Audience |
+|-----------|----------|----------|
+| `results/` | Intermediate pipeline CSVs (raw simulation data) | Developers / advanced users |
+| `outputs/figs/` | Manuscript figures (PNG + PDF) | Reviewers / readers |
+| `outputs/tables/` | Formatted manuscript tables (CSV) | Reviewers / readers |
+
+Most users only need to inspect `outputs/figs/` and `outputs/tables/`.
+
 ### Results (intermediate)
 - `results/host_fluxes_by_condition.csv` — FBA results for both models
 - `results/merged_dose_scfa_host.csv` — SCFA inputs + Recon3D results
