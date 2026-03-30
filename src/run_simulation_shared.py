@@ -126,7 +126,7 @@ def setup_medium(model, cfg):
     
     sim_cfg = cfg["host_simulation"]
 
-    #identify boundary (exchange/demand/sink) reactions model-agnostically
+    #find all boundary reactions (works for both Recon3D and Human-GEM)
     boundary_ids = set()
     for rxn in model.boundary:
         boundary_ids.add(rxn.id)

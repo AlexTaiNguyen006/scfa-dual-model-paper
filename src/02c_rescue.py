@@ -66,7 +66,7 @@ def _add_ppcoacm(model):
 
 
 def _setup(model, label, cfg):
-    """Apply strict hepatocyte medium and set ATPM objective."""
+    """Strict hepatocyte medium + ATPM objective."""
     setup_medium(model, cfg)
     atpm_rxn = _find_rxn(model, ATPM_IDS, silent=True)
     if atpm_rxn is None:
@@ -109,7 +109,7 @@ def _run_doses(model, label, atpm_rxn, scfa_rxns):
 
 
 def _setup_unconstrained(model, label):
-    """Set ATPM objective without applying the strict medium (allows loops)."""
+    """ATPM objective only, no strict medium (allows loops)."""
     atpm_rxn = _find_rxn(model, ATPM_IDS, silent=True)
     if atpm_rxn is None:
         if "ATPM_added" in model.reactions:

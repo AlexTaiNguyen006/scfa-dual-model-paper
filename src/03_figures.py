@@ -356,7 +356,7 @@ def main():
         fig.tight_layout()
         _save(fig, paths, "Fig10")
 
-    print("All manuscript figures generated.")
+    print("done — all figures generated")
 
 
 if __name__ == "__main__":

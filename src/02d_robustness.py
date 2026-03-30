@@ -243,7 +243,7 @@ def main():
         model = read_sbml_model(str(model_path))
         print(f"  {len(model.reactions)} reactions")
 
-        #each analysis wrapped in `with model:` to prevent cross-contamination
+        #with model: so each analysis starts clean
         print(f"\n  [{label}] SCFA ratio sensitivity...")
         with model:
             ratio_rows.extend(run_ratio_sensitivity(model, label, cfg))
