@@ -224,9 +224,6 @@ def run_flux_cap_sensitivity(model, model_label, cfg):
 
 #main
 def main():
-
-
-
     paths = build_paths()
     cfg = load_config(paths.config_path)
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 
-import itertools
 import pandas as pd
 import numpy as np
 import cobra
@@ -135,10 +134,6 @@ def _run_sweeps(model, model_label, cfg, sens_cfg):
 
 
 def main():
-
-
-
-
     paths = build_paths()
     cfg = load_config(paths.config_path)
     sens_cfg = cfg.get("sensitivity", {})

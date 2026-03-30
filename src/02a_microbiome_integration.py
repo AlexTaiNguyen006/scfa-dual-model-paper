@@ -30,8 +30,8 @@ SOURCE_COLORS = {
 }
 
 plt.rcParams.update({
-    "font.family": "sans-serif",
-    "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+    "font.family": "serif",
+    "font.serif": ["Times New Roman", "Times", "DejaVu Serif"],
     "font.size": 10,
     "axes.spines.top": False,
     "axes.spines.right": False,
@@ -185,10 +185,6 @@ def fig_cross_validation(community_df, pipeline_df, figs_dir):
 
 
 def main():
-
-
-
-
     paths = build_paths()
 
     #load community scfa data

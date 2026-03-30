@@ -6,10 +6,6 @@ from .utils import build_paths, load_config, read_scfa_inputs
 
 
 def main():
-
-
-
-
     paths = build_paths()
     cfg = load_config(paths.config_path)
     conditions = cfg["project"]["conditions"]

@@ -2,10 +2,7 @@
 
 Constraint-based metabolic modeling pipeline quantifying how short-chain
 fatty acids (SCFAs) from *Stachys affinis* stachyose fermentation modulate
-hepatic ATP maintenance. This is the first framework linking a specific
-plant-derived prebiotic (stachyose) through colonic SCFA production to
-quantitative predictions of host hepatocyte energy metabolism using
-genome-scale metabolic reconstructions.
+hepatic ATP maintenance, using Recon3D and Human-GEM.
 
 ## Overview
 
@@ -168,11 +165,10 @@ ATP yield and correctly predicts the rank-order of substrate preferences
 ### Microbiome layer — SCFA source justification
 
 The current pipeline uses literature-derived SCFA concentrations rather
-than modeling microbial fermentation directly. This is a deliberate
-methodological choice: by parameterizing SCFA availability from published
-experimental data, we decouple the host-metabolism analysis from the
-substantial uncertainties in gut microbiome composition and fermentation
-kinetics, which vary widely between individuals.
+than modeling microbial fermentation directly. Using published
+experimental data for SCFA availability separates the host-metabolism
+analysis from the uncertainties in gut microbiome composition and
+fermentation kinetics.
 
 **Justification for SCFA ranges used:**
 
@@ -197,16 +193,12 @@ Our Low/Mid/High dose conditions (total SCFA = 3.1/6.2/12.4 mmol/gDW/hr)
 span a physiologically plausible range that encompasses both minimal
 fiber intake and high-stachyose diets.
 
-**Scope clarification:** This pipeline explicitly models the
-**SCFA→hepatocyte** segment of the diet→microbiome→SCFA→host axis.
-We do not claim to replace microbiome modeling; rather, we provide a
-modular downstream component that can accept SCFA predictions from any
-source — whether literature, *in vitro* fermentation experiments, or
-computational tools such as AGORA2 community models (Heinken et al.,
-2023) or KBase flux-balance workflows. The sensitivity analysis
-(Figure 5) demonstrates how the host model responds across the full
-range of biologically plausible SCFA inputs, enabling integration with
-upstream microbiome predictions without re-running the host simulations.
+**Scope:** This pipeline models the **SCFA→hepatocyte** segment of
+the diet→microbiome→SCFA→host axis. It accepts SCFA inputs from any
+source — literature values, *in vitro* fermentation experiments, or
+computational tools like AGORA2 (Heinken et al., 2023) or KBase
+flux-balance workflows. The sensitivity analysis (Figure 5) shows how
+the host model responds across biologically plausible SCFA inputs.
 
 ## Outputs
 
@@ -285,8 +277,8 @@ available via Zenodo: https://doi.org/10.5281/zenodo.19293353.
 ### To reproduce
 
 ```bash
-git clone <repository-url>
-cd stachys-affinis-reproducibility
+git clone https://github.com/AlexTaiNguyen006/scfa-dual-model-paper.git
+cd scfa-dual-model-paper
 conda env create -f environment.yml
 conda activate stachys-scfa
 # place Recon3D.xml.gz and Human-GEM.xml in data/models/

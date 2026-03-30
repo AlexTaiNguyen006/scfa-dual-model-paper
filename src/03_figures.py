@@ -261,6 +261,7 @@ def main():
     if rs_path.exists():
         rs = pd.read_csv(rs_path)
         fig, ax = plt.subplots(figsize=(FIG_W, FIG_H))
+        labels = []
         for mdl, color in MODEL_COLORS.items():
             sub = rs[rs["model"] == mdl]
             if not sub.empty:
@@ -269,7 +270,7 @@ def main():
                         edgecolor="black", linewidth=0.5)
                 if mdl == "Recon3D":
                     labels = sub["ratio_profile"].tolist()
-        if "labels" in dir():
+        if labels:
             ax.set_yticks(np.arange(len(labels)))
             ax.set_yticklabels(labels, fontsize=9)
         ax.set_xlabel("ATPM (mmol/gDW/hr)")
