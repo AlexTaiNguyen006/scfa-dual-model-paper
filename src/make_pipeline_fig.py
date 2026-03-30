@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
 import os
 
-# Colors tuned to match the requested reference style.
+# color scheme
 COL_INPUT = "#AFC0D6"
 COL_COMP = "#E7DDB3"
 COL_OUTPUT = "#BBB5DA"
@@ -31,7 +31,7 @@ def _box(ax, cx, cy, w, h, title, subtitle, facecolor, fontsize_t=13, fontsize_s
 
 
 def _arrow(ax, x1, y1, x2, y2):
-    """Draw a directional connector."""
+    """Draw an arrow between two points."""
     ax.annotate('', xy=(x2, y2), xytext=(x1, y1),
                 arrowprops=dict(arrowstyle="->,head_width=0.22,head_length=0.1",
                                 color=ARROW, lw=1.7),
@@ -79,7 +79,7 @@ _box(ax, xs_b[1], yb, 3.0, BH, "Solution Robustness",
 _box(ax, xs_b[2], yb, 3.0, BH, "Pathway Rescue",
      "PPCOACm diagnosis\nModel convergence test", COL_VALID)
 
-# Connections from Dual-Model FBA to robustness modules.
+# arrows from FBA box to robustness boxes
 for xb in xs_b:
     _arrow(ax, xs_a[2], ya - BH/2 - 0.02, xb, yb + BH/2 + 0.02)
 

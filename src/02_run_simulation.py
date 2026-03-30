@@ -40,7 +40,7 @@ def collect_pathway_fluxes(model, solution):
 
 
 def _setup_model(model, model_label, cfg):
-    """Apply hepatocyte medium, set ATPM objective, locate SCFA exchanges."""
+    """Set up hepatocyte medium, ATPM objective, and SCFA exchanges."""
     setup_medium(model, cfg)
 
     atpm_rxn = _find_rxn(model, ATPM_IDS, silent=True)

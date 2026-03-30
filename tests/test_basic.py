@@ -1,4 +1,4 @@
-"""Minimal unit tests for the stachys-affinis SCFA pipeline."""
+"""Basic tests for the SCFA pipeline."""
 
 import os
 import sys

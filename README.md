@@ -1,13 +1,12 @@
 # Stachys affinis SCFA → Host Metabolism: Reproducibility Code
 
-Constraint-based metabolic modeling pipeline quantifying how short-chain
-fatty acids (SCFAs) from *Stachys affinis* stachyose fermentation modulate
-hepatic ATP maintenance, using Recon3D and Human-GEM.
+Constraint-based metabolic modeling pipeline for short-chain fatty acid
+(SCFA) effects on hepatic ATP maintenance, using Recon3D and Human-GEM.
 
 ## Overview
 
 This pipeline quantifies the effect of stachyose-derived SCFAs on host
-hepatocyte energy metabolism using flux balance analysis (FBA). Key features:
+hepatocyte energy metabolism using flux balance analysis (FBA). Features:
 
 - SCFA inputs derived from published *S. affinis* fermentation data
 - Dual-model validation on Recon3D and Human-GEM
@@ -142,7 +141,7 @@ to the TCA cycle.
 
 FBA is a linear programming method; ATP yield scales proportionally with
 substrate availability when only a single substrate is limiting. The
-sensitivity analysis demonstrates this is not universally the case:
+sensitivity analysis shows this doesn't always hold:
 varying glucose or oxygen reveals non-linear interactions (oxygen
 limitation caps ATP yield regardless of SCFA availability).
 
@@ -165,10 +164,8 @@ ATP yield and correctly predicts the rank-order of substrate preferences
 ### Microbiome layer — SCFA source justification
 
 The current pipeline uses literature-derived SCFA concentrations rather
-than modeling microbial fermentation directly. Using published
-experimental data for SCFA availability separates the host-metabolism
-analysis from the uncertainties in gut microbiome composition and
-fermentation kinetics.
+than modeling microbial fermentation directly. Using published SCFA data keeps the host
+analysis separate from microbiome modeling uncertainties.
 
 **Justification for SCFA ranges used:**
 
@@ -190,15 +187,14 @@ first-pass extraction of 40–70% for propionate, 30–50% for butyrate,
 and partial uptake for acetate (Bloemen et al., 2009; Boets et al., 2017).
 
 Our Low/Mid/High dose conditions (total SCFA = 3.1/6.2/12.4 mmol/gDW/hr)
-span a physiologically plausible range that encompasses both minimal
-fiber intake and high-stachyose diets.
+cover the range from minimal fiber intake to high-stachyose diets.
 
 **Scope:** This pipeline models the **SCFA→hepatocyte** segment of
 the diet→microbiome→SCFA→host axis. It accepts SCFA inputs from any
 source — literature values, *in vitro* fermentation experiments, or
 computational tools like AGORA2 (Heinken et al., 2023) or KBase
 flux-balance workflows. The sensitivity analysis (Figure 5) shows how
-the host model responds across biologically plausible SCFA inputs.
+the host model responds to different SCFA inputs.
 
 ## Outputs
 
@@ -247,7 +243,7 @@ Most users only need to inspect `outputs/figs/` and `outputs/tables/`.
 
 ## Microbiome model integration
 
-Step 02a demonstrates integration with external microbiome community models.
+Step 02a shows how to cross-validate against external microbiome community models.
 The script reads published SCFA secretion predictions from AGORA2 (Heinken
 et al., 2023), MICOM (Noecker et al., 2022), and other sources, then
 cross-validates our pipeline's dose conditions against those predictions.
@@ -259,15 +255,13 @@ mmol/gDW/hr. The script will map each prediction to the nearest
 pipeline condition and report Euclidean distance in SCFA space.
 
 The included example data contains 7 published predictions spanning
-Western, high-fiber, and supplemented diets. This shows that our
-Low/Mid/High conditions span the range of biologically plausible
-community SCFA outputs.
+Western, high-fiber, and supplemented diets. This shows our Low/Mid/High conditions cover the typical range of
+community SCFA predictions.
 
 ## Code availability
 
-This repository contains all code and configuration needed to reproduce
-the results from a clean checkout. The archived submission snapshot is
-available via Zenodo: https://doi.org/10.5281/zenodo.19293353.
+This repo has everything needed to reproduce the results. The archived submission snapshot is
+available via Zenodo: https://doi.org/10.5281/zenodo.19339916.
 
 ### Reproducibility checklist
 
