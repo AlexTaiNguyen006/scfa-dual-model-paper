@@ -89,10 +89,11 @@ def _run_model(model, model_label, scfa_df, cfg):
         ac  = float(row["acetate_mmol_gDW_hr"])
         ppa = float(row["propionate_mmol_gDW_hr"])
         but = float(row["butyrate_mmol_gDW_hr"])
+        lac = float(row.get("lactate_mmol_gDW_hr", 0.0))
 
         with model:
             for name, dose in [("acetate", ac), ("propionate", ppa),
-                               ("butyrate", but)]:
+                               ("butyrate", but), ("lactate", lac)]:
                 rxn = scfa_rxns.get(name)
                 if rxn and dose > 0:
                     rxn.bounds = (-dose, 0)
@@ -119,7 +120,8 @@ def _run_model(model, model_label, scfa_df, cfg):
                 "acetate_flux": flux(scfa_rxns.get("acetate")),
                 "propionate_flux": flux(scfa_rxns.get("propionate")),
                 "butyrate_flux": flux(scfa_rxns.get("butyrate")),
-                "solver": str(sol.solver),
+                "lactate_flux": flux(scfa_rxns.get("lactate")),
+                "solver": "glpk",
             }
             result.update(collect_pathway_fluxes(model, sol))
             rows.append(result)
@@ -131,7 +133,7 @@ def _run_model(model, model_label, scfa_df, cfg):
 def _run_fva(model, model_label, scfa_df, atpm_rxn, scfa_rxns, co2_rxn, o2_rxn):
     """Run FVA at 99% optimality for ATPM and key exchanges."""
     targets = [atpm_rxn]
-    for name in ["acetate", "propionate", "butyrate"]:
+    for name in ["acetate", "propionate", "butyrate", "lactate"]:
         if scfa_rxns.get(name):
             targets.append(scfa_rxns[name])
     if co2_rxn:
@@ -145,9 +147,10 @@ def _run_fva(model, model_label, scfa_df, atpm_rxn, scfa_rxns, co2_rxn, o2_rxn):
         ac  = float(row["acetate_mmol_gDW_hr"])
         ppa = float(row["propionate_mmol_gDW_hr"])
         but = float(row["butyrate_mmol_gDW_hr"])
+        lac = float(row.get("lactate_mmol_gDW_hr", 0.0))
         with model:
             for name, dose in [("acetate", ac), ("propionate", ppa),
-                               ("butyrate", but)]:
+                               ("butyrate", but), ("lactate", lac)]:
                 rxn = scfa_rxns.get(name)
                 if rxn and dose > 0:
                     rxn.bounds = (-dose, 0)

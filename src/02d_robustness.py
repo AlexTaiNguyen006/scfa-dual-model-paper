@@ -65,9 +65,14 @@ RATIO_PROFILES = {
 def run_ratio_sensitivity(model, model_label, cfg):
     
     atpm_rxn, scfa_rxns, glc_rxn, o2_rxn = _setup_model(model, model_label, cfg)
-    total_scfa = 6.2  #mid dose total
+    # R2.8: normalize by total carbon instead of total moles
+    # Mid dose reference: 4.0 Ac (2C), 1.4 Ppa (3C), 0.8 But (4C) -> 8 + 4.2 + 3.2 = 15.4 total C
+    target_carbon = 15.4 
     rows = []
     for profile_name, (fac, fppa, fbut) in RATIO_PROFILES.items():
+        avg_carbon_per_mole = (fac * 2) + (fppa * 3) + (fbut * 4)
+        total_scfa = target_carbon / avg_carbon_per_mole
+        
         ac = total_scfa * fac
         ppa = total_scfa * fppa
         but = total_scfa * fbut
@@ -125,6 +130,19 @@ def run_pfba_comparison(model, model_label, cfg):
                     pathway_fluxes[f"fba_{canonical_id}"] = float(
                         sol_fba.fluxes.get(rxn.id, 0))
 
+            # R2.4: compute internal flux deviations (not just objective)
+            internal_diffs = []
+            for r in model.reactions:
+                rid = r.id
+                if not (rid.startswith("EX_") or rid.startswith("DM_") or "sink" in rid):
+                    f1 = sol_fba.fluxes.get(rid, 0.0)
+                    f2 = sol_pfba.fluxes.get(rid, 0.0)
+                    internal_diffs.append(abs(f1 - f2))
+                    
+            mean_shift = np.mean(internal_diffs) if internal_diffs else 0.0
+            max_shift = np.max(internal_diffs) if internal_diffs else 0.0
+            rxns_changed = sum(d > 1e-4 for d in internal_diffs)
+
         row = {
             "model": model_label,
             "condition": cond,
@@ -135,6 +153,9 @@ def run_pfba_comparison(model, model_label, cfg):
             "flux_reduction_pct": round(
                 100 * (total_flux_fba - total_flux_pfba) / total_flux_fba, 1)
                 if total_flux_fba > 0 else 0,
+            "internal_MAE": round(mean_shift, 4),
+            "internal_max_diff": round(max_shift, 4),
+            "significant_rxn_shifts": int(rxns_changed),
         }
         row.update(pathway_fluxes)
         rows.append(row)

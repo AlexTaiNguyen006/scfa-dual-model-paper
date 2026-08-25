@@ -117,12 +117,16 @@ def _run_sweeps(model, model_label, cfg, sens_cfg):
            lambda v: default_glc, lambda v: v)
 
     #ratio sweep
-    total_scfa = default_ac + default_but
+    # R2.8: normalize by total carbon instead of total moles
+    target_carbon_ac_but = (default_ac * 2) + (default_but * 4) # 4.0*2 + 0.8*4 = 11.2 C
     ratio_vals = list(np.linspace(0.1, 0.9, 9))
     print(f"  [{model_label}] sweeping acetate:butyrate ratio...")
     for frac_ac in ratio_vals:
+        frac_but = 1 - frac_ac
+        avg_c = (frac_ac * 2) + (frac_but * 4)
+        total_scfa = target_carbon_ac_but / avg_c
         ac = total_scfa * frac_ac
-        but = total_scfa * (1 - frac_ac)
+        but = total_scfa * frac_but
         v = _run_single(model, atpm_rxn, scfa_rxns, glc_rxn, o2_rxn,
                          ac, default_ppa, but, default_glc, default_o2)
         rows.append({"model": model_label, "sweep": "ac_but_ratio",

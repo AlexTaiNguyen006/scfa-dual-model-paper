@@ -12,6 +12,7 @@ SCFA_EXCHANGE_IDS = {
     "acetate":    ["EX_ac_e", "EX_ac[e]", "EX_ac(e)", "MAR09086"],
     "propionate": ["EX_ppa_e", "EX_propn_e", "EX_ppn_e", "EX_ppa[e]", "MAR09808"],
     "butyrate":   ["EX_but_e", "EX_btn_e", "EX_but[e]", "MAR09809"],
+    "lactate":    ["EX_lac__D_e", "EX_lac__L_e", "EX_lac_D[e]", "EX_lac_L[e]", "MAR09135", "MAR09134"],
 }
 GLUCOSE_IDS = ["EX_glc__D_e", "EX_glc_D_e", "EX_glc[e]", "MAR09034"]
 O2_IDS = ["EX_o2_e", "EX_o2[e]", "MAR09048"]

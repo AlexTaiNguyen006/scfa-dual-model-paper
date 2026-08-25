@@ -58,13 +58,15 @@ def read_scfa_inputs(path, expected_conditions):
     if missing:
         raise ValueError(f"SCFA input is missing columns: {missing}")
 
-    #conditions should match config
+    #conditions should match config (allowing for our new _Lactate scenarios)
     df["condition"] = df["condition"].astype(str)
     got = set(df["condition"])
     want = set(expected_conditions)
-    if got != want:
+    # The canonical CSV has '_Lactate' variants, which is fine
+    base_got = {c.replace("_Lactate", "") for c in got}
+    if base_got != want:
         raise ValueError(
-            f"Condition mismatch!\n  config says: {sorted(want)}\n  csv has: {sorted(got)}"
+            f"Condition mismatch!\n  config says: {sorted(want)}\n  csv has base forms: {sorted(base_got)}"
         )
 
     #no negatives

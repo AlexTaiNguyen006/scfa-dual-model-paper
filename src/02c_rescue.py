@@ -130,9 +130,7 @@ def main():
     paths = build_paths()
     cfg = load_config(paths.config_path)
 
-    print("=" * 50)
-    print("PPCOACm Rescue Analysis")
-    print("=" * 50)
+    print("\nPPCOACm Rescue Analysis")
 
     # load Recon3D
     sbml_file = decompress_gz(paths.sbml_path)
