@@ -155,7 +155,7 @@ def _run_fva(model, model_label, scfa_df, atpm_rxn, scfa_rxns, co2_rxn, o2_rxn):
                 if rxn and dose > 0:
                     rxn.bounds = (-dose, 0)
             fva = flux_variability_analysis(
-                model, reaction_list=targets, fraction_of_optimum=0.99)
+                model, reaction_list=targets, fraction_of_optimum=0.99, processes=1)
             for rxn_id in fva.index:
                 fmin = float(fva.loc[rxn_id, "minimum"])
                 fmax = float(fva.loc[rxn_id, "maximum"])

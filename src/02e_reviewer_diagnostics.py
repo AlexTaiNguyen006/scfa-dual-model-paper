@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Reviewer Diagnostics: Futile cycles, unconstrained loops, and residual differences.
+"""Model Diagnostics: Futile cycles, unconstrained loops, and cross-model comparison.
 
-This script runs isolated tests strictly to address Reviewer 1 and 2 queries:
-  1. energy-generating futile cycles (R2.5)
-  2. Spurious unconstrained propionate loops (R1.4)
-  3. Final residual divergence reactions between models (R1.6)
+Tests:
+  1. Energy-generating futile cycles under strict nutrient starvation
+  2. Unconstrained propionate loops in unharmonized models
+  3. Internal flux distribution differences between models
 """
 
 import pandas as pd
@@ -14,7 +14,6 @@ from cobra.io import read_sbml_model
 from .utils import build_paths, load_config, decompress_gz
 from .run_simulation_shared import setup_medium, ATPM_IDS, _find_rxn, SCFA_EXCHANGE_IDS, GLUCOSE_IDS, O2_IDS
 
-# Same exact parameters and setup components as original pipeline
 _HGEM_ATPM_METS = {
     "MAM01371c": -1, "MAM02040c": -1, "MAM01285c": 1,
     "MAM02751c": 1, "MAM02039c": 1,
@@ -46,7 +45,7 @@ def _force_atpm_objective(model):
     return atpm_rxn
 
 def test_futile_cycles(model, label, cfg, paths):
-    """(R2.5) Check if ATP is produced when all external inputs are 0."""
+    """Check if ATP is produced when all external carbon and nutrient inputs are zero."""
     setup_medium(model, cfg)
     atpm_rxn = _force_atpm_objective(model)
     
@@ -56,12 +55,12 @@ def test_futile_cycles(model, label, cfg, paths):
         if target:
             target.bounds = (0.0, 0.0)
             
-    # Also restrict the amino acids and vitamins entirely (strict starvation)
+    # Also restrict amino acids and vitamins (strict starvation)
     for rxn in model.reactions:
         if rxn.id.startswith("EX_") and rxn.lower_bound < 0:
             if rxn.id not in ["EX_h2o_e", "EX_h_e", "EX_pi_e", "EX_so4_e", "EX_na1_e", "EX_k_e", "EX_cl_e", "EX_ca2_e", "EX_mg2_e", "EX_fe2_e",
                               "EX_h2o[e]", "EX_h[e]", "EX_pi[e]", "EX_so4[e]", "EX_na1[e]", "EX_k[e]", "EX_cl[e]", "EX_ca2[e]", "EX_mg2[e]", "EX_fe2[e]"]:
-                rxn.bounds = (0.0, 0.0) # lock all remaining uptake
+                rxn.bounds = (0.0, 0.0)
                 
     with model:
         sol = model.optimize()
@@ -72,11 +71,11 @@ def test_futile_cycles(model, label, cfg, paths):
         fluxes = {r_id: sol.fluxes[r_id] for r_id in sol.fluxes.index if abs(sol.fluxes[r_id]) > 1e-4}
         df_fl = pd.DataFrame(list(fluxes.items()), columns=["Reaction", "Flux"])
         df_fl.to_csv(paths.results / f"revision_diagnostics/{label}_futile_cycle_fluxes.csv", index=False)
-        print(f"  WARNING: Model produces {atp:.2f} free ATP. Degenerate fluxes logged.")
+        print(f"  Warning: Model produces {atp:.2f} free ATP under starvation.")
     return atp
 
 def diagnose_spurious_loops(recon, cfg, paths):
-    """(R1.4) Compare constrained vs unconstrained PPCOACm rescue."""
+    """Compare constrained vs unconstrained PPCOACm rescue."""
     _add_ppcoacm(recon)
     
     # 1. Unconstrained

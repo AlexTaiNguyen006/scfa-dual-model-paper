@@ -1,0 +1,383 @@
+Reaction,Name,Subsystem,Unconstrained_Flux,Constrained_Flux,Difference,Formula
+ATPM,ATP maintenance requirement,,10000.0,256.9602632841548,9743.039736715846,atp_c + h2o_c --> adp_c + h_c + pi_c
+H2Ot,H2O transport via diffusion,,1000.0,-379.1549999999999,1379.155,h2o_e <=> h2o_c
+GDHm,"Glutamate dehydrogenase, mitochondria",,-1000.0,0.11500000000000002,1000.115,glu__L_m + h2o_m + nad_m <=> akg_m + h_m + nadh_m + nh4_m
+ADK1,Adenylate kinase,,-1000.0,0.05000000000000004,1000.05,amp_c + atp_c <=> 2.0 adp_c
+r0642,"(S)-Methylmalonate semialdehyde:NAD+ oxidoreductase Valine, leucine and isoleucine degradation EC:1.2.1.3",,-1000.0000000000002,0.0,1000.0000000000002,2mop_c + h2o_c + nad_c <=> HC00900_c + 2.0 h_c + nadh_c
+DEOXFVShc,Formation of deoxy-fluvastatin-dinor,,1000.0000000000002,0.0,1000.0000000000002,coa_x + fvs_x + h2o_x + nad_x --> accoa_x + deoxfvs_x + h2o2_x + h_x + nadh_x
+2MOPtm,"Transport of 2-Methyl-3-Oxopropanoate, Mitochondrial",,1000.0000000000002,0.0,1000.0000000000002,2mop_c --> 2mop_m
+PIt2r,Phosphate reversible transport via symport,,-1000.0,1.38809476372765e-13,1000.0000000000001,h_e + pi_e <=> h_c + pi_c
+3AIB_Dtm,Transport of 3aib D into mitochondria,,-1000.0000000000001,0.0,1000.0000000000001,3aib__D_c <=> 3aib__D_m
+DEOXFVSitx,DEOXFVSitx,,-1000.0000000000001,0.0,1000.0000000000001,deoxfvs_c <=> deoxfvs_x
+FVSitx,FVSitx,,1000.0000000000001,0.0,1000.0000000000001,fvs_c <=> fvs_x
+r0196,Succinyl Coenzyme A:Glycine C-Succinyl-Transferase (Decarboxylating),,-1000.0000000000001,0.0,1000.0000000000001,gly_m + succoa_m <=> HC01496_m + coa_m
+r1116,ATP Exporter (ATP-E) TCDB:9.A.6.1.1,,-1000.0000000000001,0.0,1000.0000000000001,atp_c <=> atp_e
+r0517,Succinyl Coenzyme A:Glycine C-Succinyl-Transferase (Decarboxylating),,-1000.0000000000001,0.0,1000.0000000000001,HC01496_m + h_m <=> 5aop_m + co2_m
+Htmi,Htmi,,1000.0,0.0,1000.0,h_i --> h_m
+IMPtr,Transport of IMP,,-1000.0,0.0,1000.0,imp_e <=> imp_c
+DRPA,Deoxyribose-phosphate aldolase,,1000.0,0.0,1000.0,2dr5p_c --> acald_c + g3p_c
+5AOPtm,5 Aminolevulinate mitochondrial transport,,1000.0,0.0,1000.0,5aop_c <=> 5aop_m
+PIt,"Inorganic phosphate exchange, diffusion",,1000.0,0.0,1000.0,pi_c --> pi_e
+5AOPt2,5 Aminolevulinate transport in via proton symport,,1000.0,0.0,1000.0,5aop_e + h_e --> 5aop_c + h_c
+DEOXFVStev,Exit of deoxy-fluvastatin-dinor into hepatic vein for excretion in urine,,1000.0,0.0,1000.0,deoxfvs_c <=> deoxfvs_e
+r0892,Facilitated diffusion,,-1000.0,0.0,1000.0,utp_c <=> utp_e
+MALt,"Malate exchange, diffusion",,-1000.0,0.0,1000.0,mal__L_e <=> mal__L_c
+PIt8,Phosphate transport in/out via Na+ symporter,,-1000.0,0.0,1000.0,1.5 na1_e + pi_e <=> 1.5 na1_c + pi_c
+D_3AIBt,D-3-amino-isobutyrate transport,,1000.0,0.0,1000.0,3aib__D_c --> 3aib__D_e
+r0483,(R)-3-Amino-2-methylpropanoate:2-oxoglutarate aminotransferase EC:2.6.1.22,,-1000.0,0.0,1000.0,3aib__D_m + akg_m <=> 2mop_m + glu__L_m
+O2St,Superoxide anion transport via diffusion (extracellular),,-1000.0,0.0,1000.0,o2s_c <=> o2s_e
+FVStep,Efflux of fluvastatin from enterocytes into portal blood,,-1000.0,0.0,1000.0,fvs_c <=> fvs_e
+NDPK6,Nucleoside-diphosphate kinase (ATP:dUDP),,-1000.0,0.0,1000.0,atp_c + dudp_c <=> adp_c + dutp_c
+r0707,"2-Amino-4-hydroxy-6-(erythro-1,2,3-trihydroxypropyl) dihydropteridine triphosphate phosphohydrolase (alkaline optimum) Folate biosynthesis EC:3.1.3.1",,-1000.0,0.0,1000.0,ahdt_e + 3.0 h2o_e <=> HC01361_e + 2.0 h_e + 3.0 pi_e
+HC00900t4,"Transport of Methylmalonate, Antiport with Phsophate",,-1000.0,0.0,1000.0,HC00900_c + pi_e <=> HC00900_e + pi_c
+PYRSMCT1,Pyruvate Transport by Smct1,,-1000.0,0.0,1000.0,na1_e + pyr_e <=> na1_c + pyr_c
+ALDD2y,"Aldehyde dehydrogenase (acetaldehyde, NADP)",,1000.0,0.0,1000.0,acald_c + h2o_c + nadp_c --> ac_c + 2.0 h_c + nadph_c
+SK_tyr__L_c,Sink tyr L[c],,-1000.0,0.0,1000.0,tyr__L_c <=> 
+SK_arg__L_c,Sink arg L[c],,-1000.0,0.0,1000.0,arg__L_c <=> 
+AMPDA,Adenosine monophosphate deaminase,,1000.0,0.0,1000.0,amp_c + h2o_c + h_c --> imp_c + nh4_c
+GLCNte,Assumed Passive Diffusion into Extracellular Space,,999.9999999999999,0.0,999.9999999999999,glcn_c <=> glcn_e
+GNK,Gluconokinase,,-999.9999999999999,0.0,999.9999999999999,atp_c + glcn_c <=> 6pgc_c + adp_c + h_c
+PPM2,Phosphopentomutase 2 (deoxyribose),,999.9999999999998,0.0,999.9999999999998,2dr1p_c <=> 2dr5p_c
+HMR_3953,HMR 3953,,-999.9999999999997,0.0,999.9999999999997,6pgc_c <=> 6pgc_r
+PGLer,"6-phosphogluconolactonase, endoplasmic reticulum",,999.9999999999995,0.0,999.9999999999995,6pgl_r + h2o_r --> 6pgc_r + h_r
+RNDR4,Ribonucleoside-diphosphate reductase (UDP),,1000.0,0.009999999999999969,999.99,trdrd_c + udp_c --> dudp_c + h2o_c + trdox_c
+GLYtm,Glycine passive transport to mitochondria,,-1000.0,-0.024999999999999994,999.975,gly_c <=> gly_m
+GAPD,Glyceraldehyde-3-phosphate dehydrogenase,,1000.0,2.0316666666666663,997.9683333333334,g3p_c + nad_c + pi_c <=> 13dpg_c + h_c + nadh_c
+PYK,Pyruvate kinase,,1000.0,2.0316666666666663,997.9683333333334,adp_c + h_c + pep_c --> atp_c + pyr_c
+PGM,Phosphoglycerate mutase,,-1000.0,-2.0316666666666663,997.9683333333334,2pg_c <=> 3pg_c
+ENO,Enolase,,1000.0,2.0316666666666663,997.9683333333334,2pg_c <=> h2o_c + pep_c
+PGK,Phosphoglycerate kinase,,-1000.0,-2.0316666666666663,997.9683333333334,3pg_c + atp_c <=> 13dpg_c + adp_c
+C05957t,"Transport of Prostaglandin J2, Lactate Antiport",,-994.7079836178274,0.0,994.7079836178274,C05957_c + lac__L_e <=> C05957_e + lac__L_c
+C05957td,"Transport of Prostaglandin J2, Diffusion",,994.7079836178274,0.0,994.7079836178274,C05957_c <=> C05957_e
+r2112,Major Facilitator(MFS) TCDB:2.A.1.13.1,,-994.7079836178273,0.0,994.7079836178273,ac_e + lac__L_c <=> ac_c + lac__L_e
+MALtm,Malate transport  mitochondrial,,-1000.0,-13.49082403742355,986.5091759625765,mal__L_c + pi_m <=> mal__L_m + pi_c
+SUCOASm,Succinate  CoA ligase  ADP forming,,-1000.0,-29.133314741513736,970.8666852584863,atp_m + coa_m + succ_m <=> adp_m + pi_m + succoa_m
+SK_ala__L_c,Sink ala L[c],,-926.5000604668891,0.0,926.5000604668891,ala__L_c <=> 
+FUMm,Fumarase  mitochondrial,,949.6344640967691,29.143314741513738,920.4911493552553,fum_m + h2o_m <=> mal__L_m
+DM_thmtp_c,Demand thmppp c,,-887.92144778959,0.0,887.92144778959,thmtp_c <=> 
+THMTPt_1,Thiamine Triphosphate Transport in via Anion Antiport,,887.92144778959,0.0,887.92144778959,3.0 h2o_e + thmtp_c --> 3.0 h2o_c + thmtp_e
+CO2ter,CO2 endoplasmic reticular transport via diffusion,,-875.446856408822,0.0,875.446856408822,co2_c <=> co2_r
+CBPPer,"Carbamoyl phosphate phosphotransferase, endoplasmic reticulum",,875.4468564088219,0.0,875.4468564088219,cbp_r + glc__D_r + h_r --> co2_r + g6p_r + nh4_r
+NH4tr,"Ammonia Er Transport, Diffusion",,-875.4468564088219,0.0,875.4468564088219,nh4_c <=> nh4_r
+CBPter,"Carbamoyl phosphate transport, endoplasmic reticulum",,875.4468564088218,0.0,875.4468564088218,cbp_c + pi_c + ppi_c <=> cbp_r + pi_r + ppi_r
+PPItr,"Diphosphate transporter, endoplasmic reticulum",,-875.4468564088218,0.0,875.4468564088218,ppi_c <=> ppi_r
+PIter,"Phosphate transport, endoplasmic reticulum",,875.4468564088218,0.0,875.4468564088218,pi_r <=> pi_c
+34HPLte,Transport of 3- (4-Hydroxyphenyl)Lactate,,859.7081212788254,0.0,859.7081212788254,34hpl_c + h_c <=> 34hpl_e + h_e
+HMR_6782,(R)-4-Hydroxyphenyllactate Dehydrogenase,,859.7081212788254,0.0,859.7081212788254,34hpp_c + h_c + nadh_c --> 34hpl_c + nad_c
+TYRTA,Tyrosine transaminase,,859.7081212788253,0.01,859.6981212788253,akg_c + tyr__L_c <=> 34hpp_c + glu__L_c
+CYTK14,"Cytidylate kinase (dCMP,UTP)",,850.8407229258413,0.0,850.8407229258413,dcmp_c + utp_c <=> dcdp_c + udp_c
+CYTDt,Cytidine facilated transport in cytosol,,-850.8407229258413,0.0,850.8407229258413,cytd_e <=> cytd_c
+CYTK9,"Cytidylate kinase (CMP,dCTP)",,-850.8407229258412,0.0,850.8407229258412,cmp_c + dctp_c <=> cdp_c + dcdp_c
+DUTCP,DUTP:cytidine 5'-phosphotransferase,,-850.8407229258412,0.0,850.8407229258412,cytd_c + dutp_c <=> cmp_c + dudp_c + h_c
+NDPK3,Nucleoside-diphosphate kinase (ATP:CDP),,-850.8407229258411,0.0,850.8407229258411,atp_c + cdp_c <=> adp_c + ctp_c
+RNTR3,Ribonucleoside triphosphate reductase  CTP,,-850.8407229258411,-3.8503667874742214e-18,850.8407229258411,ctp_c + trdrd_c <=> dctp_c + h2o_c + trdox_c
+URIDK2r,Uridylate kinase (dUMP),,-850.8407229258411,-0.009999999999999969,850.8307229258411,atp_c + dump_c <=> adp_c + dudp_c
+NAt5,Sodium/ammonium proton antiporter,,-836.1481836225165,0.0,836.1481836225165,na1_c + nh4_e <=> na1_e + nh4_c
+GLUt4,Na+/glutamate symport,,1000.0,186.31499999999986,813.6850000000002,glu__L_e + na1_e --> glu__L_c + na1_c
+ALAARGGLYt,"Transport of AlaArgGly, Extracellular",,-798.981593426581,0.0,798.981593426581,alaarggly_e + h_e <=> alaarggly_c + h_c
+ALAARGGLYr,Metabolism (Formation/Degradation) of AlaArgGly,,-798.981593426581,0.0,798.981593426581,alaarggly_c + 2.0 h2o_c <=> ala__L_c + arg__L_c + gly_c
+ATPS4mi,ATP synthase (four protons for one ATP),,1000.0,239.40610591339808,760.593894086602,adp_m + 4.0 h_i + pi_m --> atp_m + h2o_m + 3.0 h_m
+HMR_6611,Urate:Oxygen Oxidoreductase,,-750.97800386307,0.0,750.97800386307,h2o_c + o2_c + urate_c <=> C11821_c + h2o2_c
+RE3352C,RE3352C,,-750.97800386307,0.0,750.97800386307,C11821_c + h2o_c <=> alltn_c + co2_c
+ALLTNti,Allantoin irreversible uniport,,750.97800386307,0.0,750.97800386307,alltn_e <=> alltn_c
+URATEt,Urate export from cytosol,,750.9780038630698,0.0,750.9780038630698,urate_c --> urate_e
+NH4tm,NH3 mitochondrial transport,,724.4433962651493,-0.09,724.5333962651493,nh4_c <=> nh4_m
+H2Otm,H2O transport  mitochondrial,,-1000.0,-286.70870816840585,713.2912918315942,h2o_c <=> h2o_m
+PUNP4,Purine-nucleoside phosphorylase (Deoxyguanosine),,701.681445851683,0.0,701.681445851683,dgsn_c + pi_c <=> 2dr1p_c + gua_c
+GUAt,Guanine transport,,-701.681445851683,0.0,701.681445851683,gua_e <=> gua_c
+HMR_6359,HMR 6359,,701.6814458516828,0.0,701.6814458516828,dgsn_e + 2.0 na1_e --> dgsn_c + 2.0 na1_c
+r0509,Succinate:Ubiquinone Oxidoreductase,,717.1101015013104,29.133314741513736,687.9767867597967,q10_m + succ_m --> fum_m + q10h2_m
+PIt9,Phosphate transport in/out via two Na+ symporter,,-663.7643433687704,0.0,663.7643433687704,2.0 na1_e + pi_e <=> 2.0 na1_c + pi_c
+ITPH2,ITP Diphosphohydrolase,,-663.7643433687703,0.0,663.7643433687703,h2o_e + itp_e <=> h_e + idp_e + pi_e
+GLCter,"Glucose transport, endoplasmic reticulum",,652.1599719426823,0.0,652.1599719426823,glc__D_c <=> glc__D_r
+GLCt1,Glucose transport  uniport,,652.1599719426824,1.0,651.1599719426824,glc__D_e <=> glc__D_c
+G6PDH2er,Glucose 6 phosphate dehydrogenase  endoplasmic reticulum,,630.5815901316872,0.0,630.5815901316872,g6p_r + nadp_r <=> 6pgl_r + h_r + nadph_r
+Htx,"H transporter, peroxisome",,1000.0,376.06307304785884,623.9369269521412,h_c <=> h_x
+CYOR_u10mi,CYOR u10mi,,717.1101015013104,107.4357682619647,609.6743332393457,2.0 ficytC_m + 2.0 h_m + q10h2_m --> 2.0 focytC_m + 4.0 h_i + q10_m
+DCMPDA,DCMP deaminase,,-850.8407229258412,-242.469178961257,608.3715439645841,dcmp_c + h2o_c + h_c <=> dump_c + nh4_c
+TRDR,Thioredoxin reductase (NADPH),,596.6371082966349,0.0,596.6371082966349,h_c + nadph_c + trdox_c --> nadp_c + trdrd_c
+RNDR1,Ribonucleoside-diphosphate reductase (ADP),,596.6371082966346,0.0,596.6371082966346,adp_c + trdrd_c --> dadp_c + h2o_c + trdox_c
+MDHp,Malate dehydrogenase  peroxisomal,,-551.0795344148098,0.0,551.0795344148098,mal__L_x + nad_x <=> h_x + nadh_x + oaa_x
+HMR_9680,"Oxaloacetate transport, glycosomal",,-551.0795344148098,0.0,551.0795344148098,oaa_x <=> oaa_c
+MAL_Ltx,Transport reaction for malate,,551.0795344148098,0.0,551.0795344148098,mal__L_x <=> mal__L_c
+MALOAAtm,"Dicarboxylate/tricarboxylate carrier (mal:oaa), mitochondrial",,-551.0795344148098,-0.010000000000002446,551.0695344148098,mal__L_m + oaa_c <=> mal__L_c + oaa_m
+r2380,Mitochondrial Carrier (MC) TCDB:2.A.29.7.2,,550.5992326974699,0.0,550.5992326974699,HC00342_m + oxa_c <=> HC00342_c + oxa_m
+r2379,Mitochondrial Carrier (MC) TCDB:2.A.29.7.2,,-550.5992326974699,0.0,550.5992326974699,HC00342_m + mal__L_c <=> HC00342_c + mal__L_m
+AKGMALtm,"Dicarboxylate/tricarboxylate carrier (mal:akg), mitochondrial",,550.5992326974698,0.0,550.5992326974698,akg_m + mal__L_c <=> akg_c + mal__L_m
+CYOOm2i,CYOOm2i,,532.8898984986895,0.0,532.8898984986895,4.0 focytC_m + 8.0 h_m + o2_m --> 4.0 ficytC_m + 2.0 h2o_m + 4.0 h_i
+ASPCT,Aspartate carbamoyltransferase,,-507.1255098405965,0.0,507.1255098405965,asp__L_c + cbp_c <=> cbasp_c + h_c + pi_c
+CBASPte,Transport of N-carbamoyl-L-aspartate,,507.1255098405965,0.0,507.1255098405965,cbasp_e <=> cbasp_c
+ATPtm,"ADP/ATP transporter, mitochondrial",,1000.0,497.5377755787452,502.4622244212548,adp_c + atp_m --> adp_m + atp_c
+SPODM,Superoxide dismutase,,500.00000000000006,3.1786344896365856e-16,500.00000000000006,2.0 h_c + 2.0 o2s_c --> h2o2_c + o2_c
+CATp,Catalase A  peroxisomal,,493.3444441966492,0.0,493.3444441966492,2.0 h2o2_x --> 2.0 h2o_x + o2_x
+SCP3x,Peroxisomal thiolase 2,,493.3444441966492,0.0,493.3444441966492,coa_x + dhcholestancoa_x + o2_x --> dcholcoa_x + h2o_x + ppcoa_x
+MDHm,Malate dehydrogenase  mitochondrial,,500.71399851157906,15.662490704090196,485.05150780748886,mal__L_m + nad_m <=> h_m + nadh_m + oaa_m
+O2tm,O2 transport  diffusion,,532.8898984986894,52.91211586901764,479.97778262967176,o2_c <=> o2_m
+PYRt2m,Pyruvate mitochondrial transport via proton symport,,473.1385480418201,0.0,473.1385480418201,h_c + pyr_c --> h_m + pyr_m
+GLUt2m,"Amino acid transporter (glu-L), mitochondrial",,704.200981575356,241.48777258006473,462.7132089952912,glu__L_c + h_c <=> glu__L_m + h_m
+GLY3Pt,Glycerol phopshate free diffusion,,448.92046558519036,-3.042012397219293e-16,448.92046558519036,glyc3p_x <=> glyc3p_c
+r0202,Sn-Glycerol-3-phosphate:NAD+ 2-oxidoreductase Glycerophospholipid metabolism EC:1.1.1.8,,-448.9204655851903,3.042012397219293e-16,448.9204655851903,glyc3p_x + nad_x <=> dhap_x + h_x + nadh_x
+G3PD1ir,Glycerol 3 phosphate dehydrogenase  NAD,,-448.9204655851903,0.0,448.9204655851903,dhap_c + h_c + nadh_c <=> glyc3p_c + nad_c
+r1428,Free diffusion,,448.92046558519024,-3.042012397219293e-16,448.92046558519024,dhap_c <=> dhap_x
+SUCD1m,Succinate dehydrogenase,,436.4916473765756,0.0,436.4916473765756,fad_m + succ_m <=> fadh2_m + fum_m
+GLUDym,"Glutamate dehydrogenase (NADP), mitochondrial",,426.546648197276,0.0,426.546648197276,glu__L_m + h2o_m + nadp_m <=> akg_m + h_m + nadph_m + nh4_m
+ARGGLUGLUt,"Transport of ArgGluGlu, Extracellular",,-424.3721972956584,0.0,424.3721972956584,arggluglu_e + h_e <=> arggluglu_c + h_c
+ARGGLUGLUr,Metabolism (Formation/Degradation) of ArgGluGlu,,-424.37219729565834,0.0,424.37219729565834,arggluglu_c + 2.0 h2o_c <=> arg__L_c + 2.0 glu__L_c
+PDHm,Pyruvate dehydrogenase,,422.7730121385893,15.542490704090206,407.2305214344991,coa_m + nad_m + pyr_m --> accoa_m + co2_m + nadh_m
+r0698,Propanoyl Coenzyme A:Acetyl Coenzyme A C-Acyltransferase Bile Acid Biosynthesis,,493.3444441966492,94.01576826196471,399.3286759346845,dcholcoa_x + 4.0 h_x + ppcoa_x --> coa_x + dhcholestancoa_x + h2o_x
+UMPK,UMP kinase,,-388.3565577669301,0.019999999999999938,388.3765577669301,atp_c + ump_c <=> adp_c + udp_c
+PYNP2r,Pyrimidine-nucleoside phosphorylase (uracil),,388.35655776693005,-0.009999999999999967,388.36655776693004,pi_c + uri_c <=> r1p_c + ura_c
+DUTUP,DUTP:uridine 5'-phosphotransferase,,-388.35655776693005,0.0,388.35655776693005,dutp_c + uri_c <=> dudp_c + h_c + ump_c
+URAt,Uracil transport via facilated diffusion,,-388.35655776693005,0.0,388.35655776693005,ura_e <=> ura_c
+ACETONEt2m,Acetone mitochondrial transport via proton symport,,-387.31392709281306,0.0,387.31392709281306,acetone_c + h_c <=> acetone_m + h_m
+ADCim,"Acetoacetate decarboxylation (irreversible), mitochondrial",,387.313927092813,0.0,387.313927092813,acac_m + h_m --> acetone_m + co2_m
+HMGLm,Hydroxymethylglutaryl-CoA lyase,,387.313927092813,0.03000000000000001,387.28392709281303,hmgcoa_m --> acac_m + accoa_m
+HXCOAtx,"Transport of Hexanoate, Peroxisome",,-383.35444645478515,0.0,383.35444645478515,hxcoa_x <=> hxcoa_c
+HXCOAx,"Acylcoa Hydrolase, Peroxisome",,383.3544464547851,0.0,383.3544464547851,h2o_x + hxcoa_x <=> coa_x + h_x + hxa_x
+FACOAE60,Fatty-acid-CoA thioesterase (hexanoate),,-383.35444645478503,0.0,383.35444645478503,h2o_c + hxcoa_c <=> coa_c + h_c + hxa_c
+HXAt2,"Transport of Hexanoate (N-C6:0), Peroxisome",,383.35444645478503,0.0,383.35444645478503,hxa_x <=> hxa_c
+G6PDH1er,"Glucose-6-phosphate dehydrogenase, endoplasmic reticulum",,369.41840986831244,0.0,369.41840986831244,g6p_r + nad_r <=> 6pgl_r + h_r + nadh_r
+O2ter,O2  transport  endoplasmic reticulum,,369.4184098683124,0.0,369.4184098683124,o2_c <=> o2_r
+HMCRNc,Formation of Homocitrulline,,-368.3213465682254,0.0,368.3213465682254,cbp_c + lys__L_c <=> h_c + hmcr_c + pi_c
+HMCRNt,Transport of Homocitrulline,,-368.3213465682254,0.0,368.3213465682254,hmcr_c <=> hmcr_e
+r0885,Mitochondrial Carrier (MC) TCDB:2.A.29.2.7,,-348.66969549606847,0.0,348.66969549606847,gthrd_c + pi_m <=> gthrd_m + pi_c
+D_LACtm,D lactate transport  mitochondrial,,-348.66969549606824,0.0,348.66969549606824,h_c + lac__D_c <=> h_m + lac__D_m
+HMR_3859,(R)-Lactate:Ferricytochrome-C 2-Oxidoreductase,,348.66969549606824,0.0,348.66969549606824,2.0 ficytC_m + lac__D_c --> 2.0 focytC_m + 2.0 h_c + pyr_c
+HMR_8510,HMR 8510,,348.66969549606824,0.0,348.66969549606824,lgt__S_c <=> lgt__S_m
+GLYOXm,Hydroxyacylglutathione hydrolase  mitochondrial,,348.66969549606824,0.0,348.66969549606824,h2o_m + lgt__S_m --> gthrd_m + h_m + lac__D_m
+LGTHL,Lactoylglutathione lyase,,348.6696954960682,0.0,348.6696954960682,gthrd_c + mthgxl_c --> lgt__S_c
+PGMT,Phosphoglucomutase,,342.5462533113181,0.0,342.5462533113181,g1p_c <=> g6p_c
+ASPLYSHISr,Metabolism (Formation/Degradation) of AspLysHis,,-329.21568334253095,0.0,329.21568334253095,asplyshis_c + 2.0 h2o_c <=> asp__L_c + his__L_c + lys__L_c
+ASPLYSHISt,"Transport of AspLysHis, Extracellular",,-329.21568334253095,0.0,329.21568334253095,asplyshis_e + h_e <=> asplyshis_c + h_c
+r2420,Mitochondrial Carrier (MC) TCDB:2.A.29.2.7,,-550.5992326974699,-241.46777258006472,309.1314601174052,oxa_c + pi_m <=> oxa_m + pi_c
+LEUTA,Leucine transaminase,,-309.10888858135536,0.010000000000000002,309.11888858135535,akg_c + leu__L_c <=> 4mop_c + glu__L_c
+4MOPte,Transport of 4-methyl-2-oxopentanoate,,309.10888858135536,0.0,309.10888858135536,4mop_e <=> 4mop_c
+r0463,"(S)-3-Hydroxy-3-methylglutaryl-CoA acetoacetyl-CoA-lyase (CoA-acetylating) Synthesis and degradation of ketone bodies / Valine, leucine and isoleucine degradation / Butanoate metabolism EC:2.3.3.10",,-308.32277677260754,0.0,308.32277677260754,coa_x + h_x + hmgcoa_x <=> aacoa_x + accoa_x + h2o_x
+ACACT1x,Acetyl-CoA:acetyl-CoA C-acetyltransferase,,308.32277677260754,0.0,308.32277677260754,2.0 accoa_x --> aacoa_x + coa_x
+HMGCOAtx,Hydroxymethylglutaryl-CoA reversible peroxisomal transport,,-308.3227767726075,-1.3662209241733292e-18,308.3227767726075,hmgcoa_c <=> hmgcoa_x
+DADK,Deoxyadenylate kinase,,-298.31855414831693,0.009999999999999964,298.3285541483169,atp_c + damp_c <=> adp_c + dadp_c
+PUNP1,Purine-nucleoside phosphorylase (Adenosine),,-298.3185541483169,0.009999999999999966,298.32855414831687,adn_c + pi_c <=> ade_c + r1p_c
+PUNP2,Purine-nucleoside phosphorylase (Deoxyadenosine),,298.3185541483169,-0.009999999999999964,298.32855414831687,dad_2_c + pi_c <=> 2dr1p_c + ade_c
+SK_nad_c,Sink nad[c],,-298.3185541483179,0.0,298.3185541483179,nad_c <=> 
+NICRNtr,Transport of Nicotinate D-Ribonucleotide,,-298.31855414831745,0.0,298.31855414831745,nicrnt_e <=> nicrnt_c
+NMNDA,Nicotinamide-nucleotide amidase,,298.31855414831745,0.0,298.31855414831745,h2o_c + nmn_c <=> nh4_c + nicrnt_c
+NMNAT,Nicotinamide-nucleotide adenylyltransferase,,-298.3185541483174,0.0,298.3185541483174,atp_c + h_c + nmn_c <=> nad_c + ppi_c
+NDPK8m,"Nucleoside-diphosphate kinase, mitochondria",,298.31855414831705,0.0,298.31855414831705,atp_m + dadp_m --> adp_m + datp_m
+DM_datp_m,DATP demand,,298.31855414831705,0.0,298.31855414831705,datp_m --> 
+DNDPt32m,DGDP transport via ATP antiport,,298.31855414831705,0.0,298.31855414831705,atp_m + dgdp_c --> atp_c + dgdp_m
+DNDPt11m,DADP transport via dGDP antiport,,298.318554148317,0.0,298.318554148317,dadp_c + dgdp_m --> dadp_m + dgdp_c
+NTD6,5'-nucleotidase (dAMP),,298.31855414831693,0.0,298.31855414831693,damp_c + h2o_c --> dad_2_c + pi_c
+ADNK1m,"Adenosine kinase, mitochondria",,298.31855414831693,0.0,298.31855414831693,adn_m + atp_m --> adp_m + amp_m + h_m
+ADNtm,"Equilibrative nucleoside transporter, mitochondrial",,298.3185541483169,0.0,298.3185541483169,adn_c <=> adn_m
+r1813,Y+LAT2 Utilized transport,,294.0088057058296,0.0,294.0088057058296,leu__L_e + na1_e + phe__L_c --> leu__L_c + na1_c + phe__L_e
+r1770,Y+LAT2 Utilized transport,,294.0088057058296,0.0,294.0088057058296,leu__L_c + na1_e + phe__L_e --> leu__L_e + na1_c + phe__L_c
+ORN_Dtx,"Transport of Ornithine, Peroxisomal",,281.70055355920454,0.0,281.70055355920454,h_c + orn__D_x <=> h_x + orn__D_c
+HMR_9179,HMR 9179,,281.70055355920454,0.0,281.70055355920454,orn__D_c <=> orn__D_x
+3MOBte,Transport of 3-methyl-2-oxobutanoate,,277.65433337807934,0.0,277.65433337807934,3mob_e <=> 3mob_c
+ACETONEt2,Acetone transport via proton symport,,-276.31112385311263,0.0,276.31112385311263,acetone_e + h_e <=> acetone_c + h_c
+OCDCEAt,Octadecenoate  n C181  transport in via uniport,,269.7984417185069,0.0,269.7984417185069,ocdcea_e <=> ocdcea_c
+FACOAE181,Fatty-acid-CoA thioesterase (octadecenoate),,-269.79844171850687,0.0,269.79844171850687,h2o_c + odecoa_c <=> coa_c + h_c + ocdcea_c
+SK_odecoa_c,Sink odecoa[c],,261.16318026337507,0.0,261.16318026337507,odecoa_c <=> 
+HMR_9626,HMR 9626,,-261.163180263375,0.0,261.163180263375,so4_r <=> so4_c
+HMR_7949,HMR 7949,,-261.163180263375,0.0,261.163180263375,chsterols_c <=> chsterols_r
+SOAT12,Sterol O-acyltransferase (acyl-Coenzyme A: cholesterol acyltransferase) 1,,261.16318026337495,0.0,261.16318026337495,R2coa_hs_c + chsterol_c --> coa_c + xolest_hs_c
+DHCR72r,7-dehydrocholesterol reductase,,261.16318026337495,0.0,261.16318026337495,7dhchsterol_r + h_r + nadph_r --> chsterol_r + nadp_r
+7DHCHSTEROLtd,"Transport of Cholesta-5, 7-Dien-3Beta-Ol, Diffusion",,-261.16318026337495,0.0,261.16318026337495,7dhchsterol_c <=> 7dhchsterol_e
+STS3,Steryl-sulfatase,,261.16318026337495,0.0,261.16318026337495,chsterols_c + h2o_c <=> chsterol_c + h_c + so4_c
+STS3r,Steryl-sulfatase,,-261.16318026337495,0.0,261.16318026337495,chsterols_r + h2o_r <=> chsterol_r + h_r + so4_r
+7DHCHSTEROLtr,Cholesterol precursor intracellular transport,,-261.16318026337495,0.0,261.16318026337495,7dhchsterol_r <=> 7dhchsterol_c
+XOLESTte,Cholesterol ester transporter,,-261.16318026337495,0.0,261.16318026337495,xolest_hs_e <=> xolest_hs_c
+DCK1m,"Deoxycytidine kinase, mitochondrial (ATP)",,0.0,-242.469178961257,242.469178961257,atp_m + dcyt_m <=> adp_m + dcmp_m + h_m
+DCYTtm,Deoxycytidine facilated transport in mitochondria,,0.0,-242.469178961257,242.469178961257,dcyt_c <=> dcyt_m
+DCYTD,Deoxycytidine deaminase,,0.0,242.469178961257,242.469178961257,dcyt_c + h2o_c + h_c --> duri_c + nh4_c
+DCMPtm,DCMPtm,,0.0,-242.469178961257,242.469178961257,dcmp_m <=> dcmp_c
+DURIK1,Deoxyuridine kinase (ATP:Deoxyuridine),,0.0,242.45917896125698,242.45917896125698,atp_c + duri_c --> adp_c + dump_c + h_c
+r2374,Mitochondrial Carrier (MC) TCDB:2.A.29.7.2,,0.0,241.46777258006472,241.46777258006472,cit_m + oxa_c <=> cit_c + oxa_m
+ACONT,Aconitate hydratase,,0.0,241.46777258006472,241.46777258006472,cit_c <=> icit_c
+AKGICITtm,"Dicarboxylate/tricarboxylate carrier (akg:icit), mitochondrial",,0.0,-241.4677725800647,241.4677725800647,akg_c + icit_m <=> akg_m + icit_c
+VALTA,Valine transaminase,,0.0,241.40277258006472,241.40277258006472,akg_c + val__L_c <=> 3mob_c + glu__L_c
+UDPGLCURtr,Transport of UDP-Glucuronate,,239.19728069277156,0.0,239.19728069277156,udpglcur_e <=> udpglcur_c
+DM_dca3g_c,DM dca3g(c),,239.19728069277156,0.0,239.19728069277156,dca3g_c --> 
+SK_dchac_c,Sink for Deoxycholate,,-239.19728069277156,0.0,239.19728069277156,dchac_c <=> 
+DCA3GSc,UDP-Glucuronosyltransferase (UGT) cytosolic (deoxycholic acid),,239.19728069277156,0.0,239.19728069277156,dchac_c + udpglcur_c --> dca3g_c + udp_c
+GLYATm,Glycine C-acetyltransferase,,237.66689225636784,0.0,237.66689225636784,accoa_m + gly_m <=> 2aobut_m + coa_m
+AOBUTDsm,"L-2-amino-3-oxobutanoate decarboxylation, mitochondrial  (spontaneous)",,237.66689225636784,0.0,237.66689225636784,2aobut_m + h_m --> aact_m + co2_m
+AACTOOR,Aminoacetone:oxygen oxidoreductase(deaminating)(flavin-containing),,237.66689225636784,0.0,237.66689225636784,aact_c + h2o_c + o2_c --> h2o2_c + mthgxl_c + nh4_c
+AACTtm,Aminoacetone transport (mitochondrial),,237.66689225636784,0.0,237.66689225636784,aact_m --> aact_c
+HISPHEARGr,Metabolism (Formation/Degradation) of HisPheArg,,235.78577003317776,0.0,235.78577003317776,2.0 h2o_c + hisphearg_c <=> arg__L_c + his__L_c + phe__L_c
+HISPHEARGt,"Transport of HisPheArg, Extracellular",,235.78577003317776,0.0,235.78577003317776,h_e + hisphearg_e <=> h_c + hisphearg_c
+ACACT1m,Acetyl CoA C acetyltransferase  mitochondrial,,233.98298960067078,0.0,233.98298960067078,2.0 accoa_m --> aacoa_m + coa_m
+HMGCOASm,Hydroxymethylglutaryl CoA synthase  mitochondrial,,-233.98298960067075,-0.020000000000000004,233.96298960067074,coa_m + h_m + hmgcoa_m <-- aacoa_m + accoa_m + h2o_m
+ACONTm,Aconitate hydratase,,0.0,-225.8152818759745,225.8152818759745,cit_m <=> icit_m
+GALT,Galactose 1 phosphate uridylyltransferase,,223.2868844661398,0.0,223.2868844661398,gal1p_c + h_c + utp_c <=> ppi_c + udpgal_c
+UGLT,UDPglucose--hexose-1-phosphate uridylyltransferase,,-223.2868844661398,0.0,223.2868844661398,gal1p_c + udpg_c <=> g1p_c + udpgal_c
+UDPDOLPT_L,UDPglucose:dolichyl-phosphate beta-D-glucosyltransferase (liver),,223.28688446613972,0.0,223.28688446613972,0.1 dolp__L_c + udpg_c --> 0.1 dolglcp__L_c + udp_c
+DOLGPP_Ler,Dolichyl-beta-D-glucosyl-phosphate dolichylphosphohydrolase (liver),,223.28688446613972,0.0,223.28688446613972,0.1 dolglcp__L_r + h2o_r --> 0.1 dolp__L_r + glc__D_r + h_r
+DOLGLCP_Lter,Dolichyl beta-D-glucosyl phosphate flippase (liver),,223.28688446613972,0.0,223.28688446613972,0.1 dolglcp__L_c --> 0.1 dolglcp__L_r
+DOLP_Lter,Dolichol phosphate flippase (liver),,223.28688446613972,0.0,223.28688446613972,0.1 dolp__L_r --> 0.1 dolp__L_c
+H2Oter,H2O endoplasmic reticulum transport,,223.28688446613953,-2.9396805378613492e-18,223.28688446613953,h2o_c <=> h2o_r
+MI1PS,Myo Inositol 1 phosphate synthase,,217.99310972014047,0.0,217.99310972014047,g6p_c --> mi1p__D_c
+MI1Pt,"Transport of Myo-Inositol 1-Phosphate, Proton Symport",,-217.99310972014047,0.0,217.99310972014047,h_e + mi1p__D_e <=> h_c + mi1p__D_c
+PROTEIN_BS,PROTEIN BS,,212.5307784005135,0.0,212.5307784005135,0.6 ala__L_c + 0.377 arg__L_c + 0.2881 asn__L_c + 0.359 asp__L_c + 0.145 cys__L_c + 0.322 gln__L_c + 0.386 glu__L_c + 0.538 gly_c + 0.143 his__L_c + 0.324 ile__L_c + 0.564 leu__L_c + 0.57 lys__L_c + 0.138 met__L_c + 0.219 phe__L_c + 0.313 pro__L_c + 0.43 ser__L_c + 0.386 thr__L_c + 0.044 trp__L_c + 0.182 tyr__L_c + 0.416 val__L_c --> protein_c
+DM_protein_c,DM PROTEIN,,212.5307784005135,0.0,212.5307784005135,protein_c --> 
+SK_tmndnccoa_c,Sink tmndnccoa[c],,-208.93054421069996,0.0,208.93054421069996,tmndnccoa_c <=> 
+ARTFR208,R group artificial flux,,208.93054421069996,0.0,208.93054421069996,3.0 fadh2_m + 2.0 h_m + 2.0 nadph_m + tmndnccoa_c --> 1.25 R2coa_hs_c + 3.0 fad_m + 2.0 nadp_m
+SUCCtm,Succinate transport  mitochondrial,,-203.96728478111706,0.0,203.96728478111706,pi_m + succ_c <=> pi_c + succ_m
+SUCFUMtm,Succinate fumarate transport  mitochondrial,,203.967284781117,0.0,203.967284781117,fum_m + succ_c <=> fum_c + succ_m
+FUMtr,Fumarate transport via diffusion (reversible),,-203.96728478111697,0.0,203.96728478111697,fum_e <=> fum_c
+VALLEUPHEt,"Transport of ValLeuPhe, Extracellular",,-189.24152956346575,0.0,189.24152956346575,h_e + valleuphe_e <=> h_c + valleuphe_c
+VALLEUPHEr,Metabolism (Formation/Degradation) of ValLeuPhe,,-189.24152956346575,0.0,189.24152956346575,2.0 h2o_c + valleuphe_c <=> leu__L_c + phe__L_c + val__L_c
+SK_glygn2_c,Sink glygn2[c],,-188.61104592581935,0.0,188.61104592581935,glygn2_c <=> 
+DXTRNt,Transport of Phosphorylase-Limit Dextrin,,188.61104592581933,0.0,188.61104592581933,dxtrn_c <=> dxtrn_e
+GLPASE1,Glycogen phosphorylase (glygn2 -> dxtrn),,188.61104592581933,0.0,188.61104592581933,glygn2_c + 3.0 pi_c --> dxtrn_c + 3.0 g1p_c
+GTHRDH_syn,Glutathione hydralase (periplasmic),,0.0,-186.31499999999988,186.31499999999988,gthrd_c + h2o_c <=> cgly_c + glu__L_c
+BILGLCURt,Bilirubin monoglucuronide transport via bicarbonate countertransport,,0.0,-186.31499999999986,186.31499999999986,bilglcur_e + hco3_c <=> bilglcur_c + hco3_e
+r2202,Resistance-Nodulation-Cell Division (RND) TCDB:2.A.60.1.5,,0.0,186.31499999999986,186.31499999999986,bilglcur_e + gthrd_c + hco3_c <=> bilglcur_c + gthrd_e + hco3_e
+CGLYt3_2,Cys-Gly transport in via proton symport,,0.0,186.31499999999986,186.31499999999986,cgly_e + 2.0 h_e --> cgly_c + 2.0 h_c
+GGTAe2,Gamma glutamyltransferase,,0.0,186.31499999999986,186.31499999999986,gthrd_e + h2o_e <=> cgly_e + glu__L_e
+RE3016R,RE3016,,-184.70920493415622,0.0,184.70920493415622,h2o_r + h_r + leuktrB4wcooh_r <=> CE3554_r
+RE3011R,Alcohol Dehydrogenase,,-184.7092049341562,0.0,184.7092049341562,leuktrB4woh_r + nad_r <=> CE2053_r + h_r + nadh_r
+RE3012R,Aldehyde Dehydrogenase (NAD+),,-184.7092049341562,0.0,184.7092049341562,CE2053_r + h2o_r + nad_r <=> 2.0 h_r + leuktrB4wcooh_r + nadh_r
+RE3015R,Leukotriene-B4 20-Monooxygenase,,184.70920493415616,0.0,184.70920493415616,CE2056_r + h_r + nadph_r + o2_r --> CE3554_r + h2o_r + nadp_r
+RE3014R,Leukotriene-B4 20-Monooxygenase,,184.70920493415616,0.0,184.70920493415616,h_r + leuktrB4woh_r + nadph_r + o2_r --> CE2056_r + h2o_r + nadp_r
+MVLACte,Transport of Mevalonate-Lactone,,154.9918392804652,0.0,154.9918392804652,mvlac_c --> mvlac_e
+MVLACc,Formation of Mevalonate-Lactone,,154.9918392804652,0.0,154.9918392804652,h_c + mev__R_c --> h2o_c + mvlac_c
+HMGCOAR,Hydroxymethylglutaryl CoA reductase,,-154.9918392804652,-1.3662209241733292e-18,154.9918392804652,coa_c + mev__R_c + 2.0 nadp_c <=> 2.0 h_c + hmgcoa_c + 2.0 nadph_c
+ADK3m,Adentylate kinase  GTP,,153.6017488778861,0.0,153.6017488778861,amp_m + gtp_m <=> adp_m + gdp_m
+SUCOAS1m,Succinyl-CoA ligase (GDP-forming),,-153.6017488778861,0.0,153.6017488778861,coa_m + gtp_m + succ_m <=> gdp_m + pi_m + succoa_m
+HMGCOAtm,Hydroxymethylglutaryl CoA reversible mitochondrial transport,,153.33093749214225,0.0,153.33093749214225,hmgcoa_c <=> hmgcoa_m
+GLYCLm,Glycine cleavage system  mitochondrial,,-150.99004446242526,-0.025000000000000015,150.96504446242525,gly_m + nad_m + thf_m <-- co2_m + mlthf_m + nadh_m + nh4_m
+RNTR4,Ribonucleoside triphosphate reductase  UTP,,-149.15927707415855,0.0,149.15927707415855,trdrd_c + utp_c <=> dutp_c + h2o_c + trdox_c
+COAtim,CoA transporter  mitochondrial   irreversible,,-161.96619894727408,-13.450824037423544,148.51537490985055,coa_c <=> coa_m
+ADK1m,Adenylate kinase  mitochondrial,,144.71680527043083,0.0,144.71680527043083,amp_m + atp_m <=> 2.0 adp_m
+SK_gln__L_c,Sink gln L[c],,-143.46658032714302,0.0,143.46658032714302,gln__L_c <=> 
+AKGDm,2-oxoglutarate dehydrogenase,,153.6017488778858,15.662490704090189,137.93925817379562,akg_m + coa_m + nad_m --> co2_m + nadh_m + succoa_m
+G6Pter,Glucose 6 phosphate endoplasmic reticular transport via diffusion,,124.55314359117763,0.0,124.55314359117763,g6p_c <=> g6p_r
+ALCD1,Alcohol dehydrogenase (methanol),,124.4688525457518,0.0,124.4688525457518,meoh_c + nad_c <=> fald_c + h_c + nadh_c
+MEOHt2,Methanol diffusion,,124.46885254575179,0.0,124.46885254575179,meoh_e <=> meoh_c
+CE5629t,"Transport of 6, 7-Dihydroxy-1, 2, 3, 4-Tetrahydroisoquinoline",,-124.46885254575179,0.0,124.46885254575179,CE5629_c <=> CE5629_e
+RE1921C,Aromatic-L-Amino-Acid Decarboxylase,,-124.46885254575179,0.0,124.46885254575179,CE5626_c <=> CE5629_c + co2_c + 2.0 h_c
+RE1919C,RE1919,,-124.46885254575179,0.0,124.46885254575179,dopa_c + pyr_c <=> CE5626_c + h2o_c
+RE2130C,RE2130,,124.46885254575179,0.0,124.46885254575179,dopa_c + fald_c <=> CE2172_c + h2o_c
+CE2172t,"Transport of 6, 7-Dihydroxy-1, 2, 3, 4-Tetrahydroisoquinoline",,124.46885254575177,0.0,124.46885254575177,CE2172_c <=> CE2172_e
+H2Otp,H2O transport  peroxisomal,,-281.70055355920397,-161.16988844908235,120.53066511012162,h2o_c <=> h2o_x
+ACTNMO,Acetone monooxygenase,,111.0028032397004,0.0,111.0028032397004,acetone_c + h_c + nadph_c + o2_c --> acetol_c + h2o_c + nadp_c
+ALCD22_L,Alcohol dehydrogenase (L-lactaldehyde),,111.00280323970041,6.7179120187117745,104.28489122098864,lald__L_c + nad_c --> h_c + mthgxl_c + nadh_c
+ALR3,Aldose reductase (acetol),,111.0028032397004,6.717912018711775,104.28489122098863,acetol_c + h_c + nadph_c --> 12ppd__S_c + nadp_c
+LCARS,"Lacaldehyde reductase (S-propane-1,2-diol forming)",,-111.0028032397004,-6.717912018711775,104.28489122098863,h_c + lald__L_c + nadh_c <-- 12ppd__S_c + nad_c
+TYRASPARGr,Metabolism (Formation/Degradation) of TyrAspArg,,-101.61127705228124,0.0,101.61127705228124,2.0 h2o_c + tyrasparg_c <=> arg__L_c + asp__L_c + tyr__L_c
+TYRASPARGt,"Transport of TyrAspArg, Extracellular",,-101.61127705228124,0.0,101.61127705228124,h_e + tyrasparg_e <=> h_c + tyrasparg_c
+O2t,O2 transport  diffusion,,0.0,100.0,100.0,o2_e <=> o2_c
+BAAT3x,Bile acid Coenzyme A: amino acid N-acyltransferase,,0.0,94.01576826196471,94.01576826196471,dgcholcoa_x + gly_x --> coa_x + dgchol_x
+AMACR2p,Alpha-methylacyl-CoA racemase (reductase),,0.0,94.01576826196471,94.01576826196471,dhcholestancoa_x + 0.5 o2_x --> dhcholoylcoa_x + h2o_x
+r1019,Postulated transport reaction,,0.0,-94.01576826196471,94.01576826196471,dcholcoa_x <=> dcholcoa_c
+GLYtp,Glycine passive transport to peroxisome,,0.0,94.01576826196471,94.01576826196471,gly_c <=> gly_x
+DGCHOLtx,Bile acid intracellular transport,,0.0,94.0157682619647,94.0157682619647,dgchol_x <=> dgchol_c
+r0797,Glycine N-choloyltransferase EC:2.3.1.65,,0.0,-94.0157682619647,94.0157682619647,dcholcoa_c + gly_c <=> coa_c + dgchol_c
+PPM,Phosphopentomutase,,90.03800361861326,-3.0314787949339597e-18,90.03800361861326,r1p_c <=> r5p_c
+NDPK6m,"ATP:dUDP phosphotransferase, mitochondria",,-90.03800361861258,0.0,90.03800361861258,atp_m + dudp_m <=> adp_m + dutp_m
+DNDPt38m,DUTP transport via dUDP antiport,,90.03800361861258,0.0,90.03800361861258,dudp_m + dutp_c --> dudp_c + dutp_m
+SARDHm,Sarcosine dehydrogenase (m),,86.67684779394246,-2.3617644470496485e-17,86.67684779394246,fad_m + sarcs_m + thf_m --> fadh2_m + gly_m + mlthf_m
+AMETr,S-Adenosyl-L-methionine intracellular diffusion,,-86.67684779394246,0.0,86.67684779394246,amet_c <=> amet_r
+SARCStm,Sarcosine transport (mitochondrial),,86.67684779394244,1.7045252897509609e-18,86.67684779394244,sarcs_c --> sarcs_m
+GNMT,Glycine N-methyltransferase,,86.67684779394244,0.0,86.67684779394244,amet_c + gly_c --> ahcys_c + h_c + sarcs_c
+AHCYStr,S-Adenosyl-L-homocysteine intracellular diffusion,,86.67684779394244,0.0,86.67684779394244,ahcys_c <=> ahcys_r
+HISLYSTHRt,"Transport of HisLysThr, Extracellular",,82.0368804625982,0.0,82.0368804625982,h_e + hislysthr_e <=> h_c + hislysthr_c
+HISLYSTHRr,Metabolism (Formation/Degradation) of HisLysThr,,82.0368804625982,0.0,82.0368804625982,2.0 h2o_c + hislysthr_c <=> his__L_c + lys__L_c + thr__L_c
+COAtp,"Coenzyme A transport, peroxisomal",,0.0,-80.58494422454118,80.58494422454118,coa_c <=> coa_x
+NADH2_u10mi,NADH2 u10mi,,0.0,78.25245352045097,78.25245352045097,5.0 h_m + nadh_m + q10_m --> 4.0 h_i + nad_m + q10h2_m
+UAG4Ei,UDP-N-acetylglucosamine 4-epimerase,,75.03166968217765,0.0,75.03166968217765,uacgam_c <=> udpacgal_c
+HMR_0811,Alpha-N-Acetylgalactosaminidase,,75.03166968217765,0.0,75.03166968217765,M02197_c + h2o_c --> acgal_c + gbside_hs_c
+GF6PTA,Glutamine-fructose-6-phosphate transaminase,,75.03166968217765,0.0,75.03166968217765,f6p_c + gln__L_c --> gam6p_c + glu__L_c
+ACGALtr,N-Acetylgalactosamine Export,,75.03166968217765,0.0,75.03166968217765,acgal_c --> acgal_e
+HMR_3106,HMR 3106,,-75.03166968217765,0.0,75.03166968217765,accoa_c <=> accoa_x
+ACGAM6PS,N acetylglucosamine 6 phosphate synthase,,75.03166968217765,0.0,75.03166968217765,accoa_c + gam6p_c --> acgam6p_c + coa_c + h_c
+HMR_0810,Globoside Alpha-N-Acetylgalactosaminyltransferase,,75.03166968217764,0.0,75.03166968217764,gbside_hs_c + udpacgal_c --> M02197_c + h_c + udp_c
+ACGAMPM,Phosphoacetylglucosamine mutase,,75.03166968217764,0.0,75.03166968217764,acgam6p_c <=> acgam1p_c
+UAGDP,UDP-N-acetylglucosamine diphosphorylase,,75.03166968217764,0.0,75.03166968217764,acgam1p_c + h_c + utp_c --> ppi_c + uacgam_c
+ILESERARGr,Metabolism (Formation/Degradation) of IleSerArg,,68.85997220176638,0.0,68.85997220176638,2.0 h2o_c + ileserarg_c <=> arg__L_c + ile__L_c + ser__L_c
+ILESERARGt,"Transport of IleSerArg, Extracellular",,68.85997220176638,0.0,68.85997220176638,h_e + ileserarg_e <=> h_c + ileserarg_c
+PROASNCYSr,Metabolism (Formation/Degradation) of ProAsnCys,,66.52213363936072,0.0,66.52213363936072,2.0 h2o_c + proasncys_c <=> asn__L_c + cys__L_c + pro__L_c
+PROASNCYSt,"Transport of ProAsnCys, Extracellular",,66.52213363936072,0.0,66.52213363936072,h_e + proasncys_e <=> h_c + proasncys_c
+SFCYSe,Exit of sulfocysteine into extra-cellular space,,64.31319666848283,0.0,64.31319666848283,slfcys_c <=> slfcys_e
+r0512,Dihydrofolate:NAD+ oxidoreductase Folate biosynthesis EC:1.5.1.3,,64.31319666848283,0.0,64.31319666848283,dhf_c + nad_c <=> fol_c + nadh_c
+SFCYSc,Formation of sulfocysteine,,64.31319666848283,0.0,64.31319666848283,cys__L_c + h_c + so3_c <=> slfcys_c
+HC00900t1,"Transport of Methylmalonate, Antiport with Sulphite",,64.31319666848282,0.0,64.31319666848282,HC00900_c + so3_e <=> HC00900_e + so3_c
+DHFR,Dihydrofolate reductase,,-64.31319666848282,0.0,64.31319666848282,dhf_c + h_c + nadph_c <=> nadp_c + thf_c
+MTHFD,Methylenetetrahydrofolate dehydrogenase (NADP),,64.31319666848282,0.0,64.31319666848282,mlthf_c + nadp_c <=> methf_c + nadph_c
+MLTHFte3,Transport by Folr into Extracellular Space,,64.3131966684828,0.0,64.3131966684828,mlthf_e --> mlthf_c
+MTHFDm,Methylenetetrahydrofolate dehydrogenase  NADP   mitochondrial,,-64.31319666848282,-0.00999999999999999,64.30319666848281,mlthf_m + nadp_m <=> methf_m + nadph_m
+MTHFCm,Methenyltetrahydrifikate cyclohydrolase  mitochondrial,,-64.31319666848282,-0.00999999999999999,64.30319666848281,h2o_m + methf_m <=> 10fthf_m + h_m
+MTHFC,Methenyltetrahydrofolate cyclohydrolase,,64.31319666848282,0.00999999999999999,64.30319666848281,h2o_c + methf_c <=> 10fthf_c + h_c
+10FTHFtm,10-Formyltetrahydrofolate mitochondrial transport via diffusion,,64.31319666848282,0.00999999999999999,64.30319666848281,10fthf_c <=> 10fthf_m
+THFtm,"5,6,7,8-Tetrahydrofolate transport, diffusion, mitochondrial",,-64.31319666848279,-0.025000000000000033,64.28819666848278,thf_c <=> thf_m
+HC00900t3,"Transport of Methylmalonate, Antiport with Thio-Sulphate",,0.0,62.118333333333304,62.118333333333304,HC00900_c + tsul_e <=> HC00900_e + tsul_c
+TSULt4_3,Thiosulfate transport via sodium symport,,0.0,-62.1183333333333,62.1183333333333,3.0 na1_e + tsul_e <=> 3.0 na1_c + tsul_c
+r0963,Facilitated diffusion,,0.0,62.108333333333306,62.108333333333306,fol_e --> fol_c
+RPI,Ribose-5-phosphate isomerase,,60.025335745742204,-0.003333333333333336,60.028669079075534,r5p_c <=> ru5p__D_c
+RPE,Ribulose 5-phosphate 3-epimerase,,60.0253357457422,0.0,60.0253357457422,ru5p__D_c <=> xu5p__D_c
+CYOOm3i,CYOOm3i,,0.0,53.71788413098238,53.71788413098238,4.0 focytC_m + 7.92 h_m + o2_m --> 4.0 ficytC_m + 1.96 h2o_m + 4.0 h_i + 0.02 o2s_m
+PCm,Pyruvate carboxylase,,50.36553590323078,0.0,50.36553590323078,atp_m + hco3_m + pyr_m --> adp_m + h_m + oaa_m + pi_m
+O2tp,O2 transport glycosome,,0.0,47.007884130982326,47.007884130982326,o2_c <=> o2_x
+THD1m,NAD(P) transhydrogenase,,46.99237543747493,0.0,46.99237543747493,h_c + nadh_m + nadp_m --> h_m + nad_m + nadph_m
+TALA,Transaldolase,,45.01900180930654,0.0,45.01900180930654,g3p_c + s7p_c <=> e4p_c + f6p_c
+13DMThr,Demthylation of tacrolimus to 13-O-desmethyl tacrolimus in hepatocytes,,43.33842389697123,0.0,43.33842389697123,ahcys_r + h_r + tacr_r --> 13dmt_r + amet_r
+1331TAALThr,"Demethylation of 13-O-desmethyl-tacrolimus to 13,31-O-Didesmethyl-tacrolimus in hepatocytes",,43.33842389697123,0.0,43.33842389697123,13dmt_r + ahcys_r + h_r --> 1331tacr_r + amet_r
+13HTACRitr,13HTACRitr,,43.33842389697123,0.0,43.33842389697123,1331tacr_r <=> 1331tacr_c
+TACRitr,TACRitr,,43.33842389697123,0.0,43.33842389697123,tacr_c <=> tacr_r
+TACRDtsc,Uptake of tacrolimus by enterocytes,,43.33842389697123,0.0,43.33842389697123,tacr_e <=> tacr_c
+1331TACRtev,"Exit of 13,31-O-Didesmethyl-tacrolimus into hepatic vein",,43.33842389697123,0.0,43.33842389697123,1331tacr_c --> 1331tacr_e
+HISARGSERt,"Transport of HisArgSer, Extracellular",,41.7849341580284,0.0,41.7849341580284,h_e + hisargser_e <=> h_c + hisargser_c
+HISARGSERr,Metabolism (Formation/Degradation) of HisArgSer,,41.7849341580284,0.0,41.7849341580284,2.0 h2o_c + hisargser_c <=> arg__L_c + his__L_c + ser__L_c
+CO2tp,CO2 peroxisomal transport,,0.0,40.2924721122706,40.2924721122706,co2_c <=> co2_x
+HCO3Em,HCO3 equilibration reaction,,50.36553590323078,13.470824037423546,36.89471186580723,co2_m + h2o_m --> h_m + hco3_m
+VALTAim,Valine transaminase  mitochondiral,,-277.6543333780794,-241.39277258006476,36.26156079801464,akg_m + val__L_m <=> 3mob_m + glu__L_m
+VALt5m,Valine reversible mitochondrial transport,,-277.65433337807934,-241.39277258006476,36.261560798014585,val__L_c <=> val__L_m
+3MOBt2im,3-methyl-2-oxobutanoate mitochondrial transport via proton symport,,277.65433337807934,241.4027725800647,36.25156079801465,3mob_c + h_c --> 3mob_m + h_m
+CO2tm,CO2 transport  diffusion   mitochondrial,,0.0,-33.43164807484705,33.43164807484705,co2_c <=> co2_m
+TKT1,Transketolase,,30.012667872871102,0.003333333333333331,30.009334539537768,r5p_c + xu5p__D_c <=> g3p_c + s7p_c
+TKT2,Transketolase,,30.0126678728711,0.003333333333333331,30.009334539537765,e4p_c + xu5p__D_c <=> f6p_c + g3p_c
+ARGARGMETt,"Transport of ArgArgMet, Extracellular",,29.329247419270864,0.0,29.329247419270864,argargmet_e + h_e <=> argargmet_c + h_c
+ARGARGMETr,Metabolism (Formation/Degradation) of ArgArgMet,,29.32924741927086,-4.552880087473328e-18,29.32924741927086,argargmet_c + 2.0 h2o_c <=> 2.0 arg__L_c + met__L_c
+r0940,Free diffusion,,-19.25667164757397,0.0,19.25667164757397,HC00250_c <=> HC00250_e
+r0210,"L-Serine hydro-lyase (adding homocysteine) Glycine, serine and threonine metabolism EC:4.2.1.22",,19.25667164757397,0.0,19.25667164757397,HC00250_c + h_c + ser__L_c --> cys__L_c + h2o_c
+TPI,Triose-phosphate isomerase,,-15.006333936435597,1.0066666666666664,16.013000603102263,dhap_c <=> g3p_c
+r0083,Oxalosuccinate:NADP+ oxidoreductase (decarboxylating) Citrate cycle (TCA cycle) EC:1.1.1.42,,0.0,15.652490704090194,15.652490704090194,HC01434_m + h_m --> akg_m + co2_m
+r0425,EC:1.1.1.42,,0.0,15.652490704090193,15.652490704090193,icit_m + nad_m <=> HC01434_m + h_m + nadh_m
+CSm,Citrate synthase,,0.0,15.652490704090193,15.652490704090193,accoa_m + h2o_m + oaa_m --> cit_m + coa_m + h_m
+LDH_L,L-lactate dehydrogenase,,0.0,-15.542490704090206,15.542490704090206,lac__L_c + nad_c <=> h_c + nadh_c + pyr_c
+L_LACtcm,L-lactate transport via diffusion (cytosol to mitochondria),,0.0,15.542490704090206,15.542490704090206,lac__L_c --> lac__L_m
+LDH_Lm,"L-lactate dehydrogenase, mitochondria",,0.0,15.542490704090206,15.542490704090206,lac__L_m + nad_m <=> h_m + nadh_m + pyr_m
+r0407,"Sedoheptulose 1,7-bisphosphate D-glyceraldehyde-3-phosphate-lyase Carbon fixation EC:4.1.2.13",,-15.00633393643544,0.003333333333333331,15.009667269768773,HC00361_c <=> dhap_c + e4p_c
+r0408,ATP:Sedoheptulose 7-phosphate 1-phosphotransferase EC:2.7.1.11,,-15.00633393643544,0.003333333333333331,15.009667269768773,atp_c + s7p_c <=> HC00361_c + adp_c + h_c
+ME2,Malic enzyme (NADP),,0.0,13.480824037423547,13.480824037423547,mal__L_c + nadp_c --> co2_c + nadph_c + pyr_c
+MMMm,Methylmalonyl-CoA mutase,,3.565954752636402e-14,13.470824037423546,13.47082403742351,mmcoa__R_m <=> succoa_m
+PPCOACm,"Propionyl-CoA carboxylase, mitochondrial",,0.0,13.460824037423546,13.460824037423546,atp_m + hco3_m + ppcoa_m --> adp_m + h_m + mmcoa__S_m + pi_m
+MMEm,Methylmalonyl-CoA epimerase/racemase,,0.0,-13.460824037423544,13.460824037423544,mmcoa__R_m <=> mmcoa__S_m
+PPCOAtm,"Propanoyl-CoA transport, mitochondria",,0.0,13.450824037423546,13.450824037423546,ppcoa_c <=> ppcoa_m
+r1292,Postulated transport reaction,,0.0,-13.430824037423546,13.430824037423546,ppcoa_c <=> ppcoa_x
+SCP2x_1,Peroxisomal Thiolase 2,,0.0,13.430824037423532,13.430824037423532,3.0 co2_x + 8.0 coa_x + 7.0 dhcholoylcoa_x + 2.0 h2o_x --> 7.0 dgcholcoa_x + 8.0 ppcoa_x
+H2O2tp,"Hydrogen peroxide transport via diffusion, glyoxysome",,-13.311111606701932,3.178634489636585e-16,13.311111606701932,h2o2_c <=> h2o2_x
+CYSGLUTRPr,Metabolism (Formation/Degradation) of CysGluTrp,,9.351354249622595,0.0,9.351354249622595,cysglutrp_c + 2.0 h2o_c <=> cys__L_c + glu__L_c + trp__L_c
+CYSGLUTRPt,"Transport of CysGluTrp, Extracellular",,9.351354249622593,0.0,9.351354249622593,cysglutrp_e + h_e <=> cysglutrp_c + h_c
+C160CPT2,C160 transport into the mitochondria,,8.635261455131827,0.0,8.635261455131827,coa_m + pmtcrn_m <=> crn_m + pmtcoa_m
+FAOXC160,Beta oxidation of long chain fatty acid,,8.635261455131827,0.0,8.635261455131827,7.0 coa_m + 7.0 fad_m + 7.0 h2o_m + 7.0 nad_m + pmtcoa_m --> 8.0 accoa_m + 7.0 fadh2_m + 7.0 h_m + 7.0 nadh_m
+r0732,Hexanoyl Coenzyme A:Acetyl Coenzyme A C-Acyltransferase,,8.635261455131827,2.7324418483466595e-18,8.635261455131827,HC01406_m + coa_m --> accoa_m + hxcoa_m
+FAOXC1811603m,Beta oxidation  fatty acid,,8.635261455131827,0.0,8.635261455131827,5.0 coa_m + 4.0 fad_m + 5.0 h2o_m + 5.0 nad_m + odecoa_m --> 5.0 accoa_m + 4.0 fadh2_m + 5.0 h_m + 5.0 nadh_m + occoa_m
+r1467,Postulated transport reaction,,8.635261455131827,0.0,8.635261455131827,odecoa_c <=> odecoa_m
+ACOADH60_m,Acyl-CoA dehydrogenase (6:0),,8.635261455131827,0.0,8.635261455131827,fad_m + hxcoa_m --> fadh2_m + hx2coa_m
+r0633,Trans-Oct-2-Enoyl Coenzyme A Reductase,,8.635261455131827,2.7324418483466595e-18,8.635261455131827,nadp_m + occoa_m <=> HC01415_m + h_m + nadph_m
+CARN160t_m,Hexadecanoyl-l-carnitine:carnitine antiport (Cytosol to mitochondira),,8.635261455131825,0.0,8.635261455131825,crn_m + pmtcrn_c <=> crn_c + pmtcrn_m
+r2438,Mitochondrial Carrier (Mc) Tcdb:2.A.29.8.3,,-8.635261455131825,0.0,8.635261455131825,c4crn_c + crn_m <=> c4crn_m + crn_c
+C4CRNCPT2,Transport of butyryl carnitine in the mitochondrial matrix for final hydrolysis,,-8.635261455131825,0.0,8.635261455131825,c4crn_m + coa_m <=> btcoa_m + crn_m
+r0733,(S)-Hydroxyhexanoyl Coenzyme A:NAD+ Oxidoreductase,,8.635261455131825,2.73244184834666e-18,8.635261455131825,HC01407_m + nad_m --> HC01408_m + h_m + nadh_m
+r0287,Acetyl Coenzyme A:Acetyl Coenzyme A C-Acetyltransferase,,8.635261455131825,2.7324418483466603e-18,8.635261455131825,HC01408_m + coa_m --> accoa_m + btcoa_m
+r0731,(S)-Hydroxyoctanoyl Coenzyme A Hydro-Lyase,,8.635261455131825,2.7324418483466595e-18,8.635261455131825,HC01415_m + h2o_m --> HC01405_m
+r0734,(S)-Hydroxyhexanoyl Coenzyme A Hydro-Lyase,,8.635261455131825,2.73244184834666e-18,8.635261455131825,h2o_m + hx2coa_m --> HC01407_m
+r0730,(S)-Hydroxyoctanoyl Coenzyme A:NAD+ Oxidoreductase,,8.635261455131825,2.7324418483466595e-18,8.635261455131825,HC01405_m + nad_m --> HC01406_m + h_m + nadh_m
+C4CRNe,Transport of butyryl carnitine into the extra cellular space,,8.635261455131825,0.0,8.635261455131825,c4crn_c --> c4crn_e
+PMTCRNtr,Transport of L-Palmitoylcarnitine,,8.635261455131824,0.0,8.635261455131824,pmtcrn_e <=> pmtcrn_c
+ALR2,Aldose reductase (methylglyoxal),,0.0,6.717912018711775,6.717912018711775,h_c + mthgxl_c + nadph_c --> acetol_c + nadp_c
+CO2t,CO2 transporter via diffusion,,0.0,-6.68999999999999,6.68999999999999,co2_e <=> co2_c
+RE2644C,Aspartoacylase,,-5.292016382172783,0.0,5.292016382172783,CE1556_c + h2o_c <=> ac_c + asn__L_c
+CE1556td,Transport of N-Acetyl-L-Asparagine,,5.292016382172782,0.0,5.292016382172782,CE1556_c <=> CE1556_e

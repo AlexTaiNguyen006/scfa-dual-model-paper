@@ -227,6 +227,12 @@ def main():
     rescue_path = paths.results / "table_rescue_constrained.csv"
     if rescue_path.exists():
         rc = pd.read_csv(rescue_path)
+        # Standardize order: High -> Mid -> Low -> Baseline (or Baseline -> Low -> Mid -> High)
+        # Consistent with Fig 1-5, 9, 10 (High -> Mid -> Low)
+        order_map_rc = {"High": 0, "Mid": 1, "Low": 2, "Baseline": 3}
+        rc["_ord"] = rc["Condition"].map(order_map_rc)
+        rc = rc.sort_values("_ord").drop(columns="_ord").reset_index(drop=True)
+        
         conds = rc["Condition"].tolist()
         x_rc = np.arange(len(conds))
         w = 0.2
@@ -236,9 +242,9 @@ def main():
 
         fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(11, 5))
 
-        # Panel A: Propionate flux
+        # Panel A: Propionate flux (High -> Mid -> Low)
         dose_mask = rc["Condition"] != "Baseline"
-        rc_dose = rc[dose_mask]
+        rc_dose = rc[dose_mask].copy()
         x_d = np.arange(len(rc_dose))
         ax_a.bar(x_d - w, rc_dose["Recon3D_orig_PPA"].abs(), w,
                  color=COL_ORIG, label="Recon3D (original)",
@@ -246,10 +252,10 @@ def main():
         constrained_ppa_col = "Rescued_constrained_PPA"
         if constrained_ppa_col in rc_dose.columns:
             ax_a.bar(x_d, rc_dose[constrained_ppa_col].abs(), w,
-                     color=COL_RESC, label="Recon3D + PPCOACm",
+                     color=COL_RESC, label="Recon3D + PPCOACm (harmonized)",
                      edgecolor="black", linewidth=0.5)
         ax_a.bar(x_d + w, rc_dose["Human_GEM_PPA"].abs(), w,
-                 color=COL_HGEM, label="Human-GEM",
+                 color=COL_HGEM, label="Human-GEM (native)",
                  edgecolor="black", linewidth=0.5)
         ax_a.set_xticks(x_d)
         ax_a.set_xticklabels(rc_dose["Condition"].tolist())
@@ -259,15 +265,15 @@ def main():
                         fontweight="bold")
         ax_a.legend(fontsize=8)
 
-        # Panel B: ATPM
+        # Panel B: ATPM (High -> Mid -> Low -> Baseline)
         ax_b.bar(x_rc - w, rc["Recon3D_orig_ATPM"], w,
                  color=COL_ORIG, label="Recon3D (original)",
                  edgecolor="black", linewidth=0.5)
         ax_b.bar(x_rc, rc["Rescued_constrained_ATPM"], w,
-                 color=COL_RESC, label="Recon3D + PPCOACm (constrained)",
+                 color=COL_RESC, label="Recon3D + PPCOACm (harmonized)",
                  edgecolor="black", linewidth=0.5)
         ax_b.bar(x_rc + w, rc["Human_GEM_ATPM"], w,
-                 color=COL_HGEM, label="Human-GEM",
+                 color=COL_HGEM, label="Human-GEM (native)",
                  edgecolor="black", linewidth=0.5)
         ax_b.set_xticks(x_rc)
         ax_b.set_xticklabels(conds)

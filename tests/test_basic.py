@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 
-# ---------- Config & paths ---------------------------------------------------
+# Config and paths
 
 def test_config_loads():
     from src.utils import load_config
@@ -30,7 +30,7 @@ def test_build_paths():
     assert paths.sbml_path.suffix in (".xml", ".gz")
 
 
-# ---------- SCFA inputs ------------------------------------------------------
+# SCFA inputs
 
 def test_scfa_inputs_valid():
     df = pd.read_csv(ROOT / "data" / "inputs" / "scfa_inputs.csv")
@@ -40,7 +40,7 @@ def test_scfa_inputs_valid():
         assert (df[col] >= 0).all(), f"Negative values in {col}"
 
 
-# ---------- Shared constants --------------------------------------------------
+# Shared constants
 
 def test_pathway_rxns_format():
     from src.run_simulation_shared import PATHWAY_RXNS
@@ -62,7 +62,7 @@ def test_find_rxn_returns_none_for_missing():
     assert _find_rxn(FakeModel(), ["NONEXISTENT"], silent=True) is None
 
 
-# ---------- AGORA2 data -------------------------------------------------------
+# AGORA2 data
 
 def test_agora2_csv_loads():
     path = ROOT / "data" / "inputs" / "agora2_community_scfa.csv"
@@ -73,7 +73,7 @@ def test_agora2_csv_loads():
     assert len(df) >= 5
 
 
-# ---------- Results (only when pipeline has run) ------------------------------
+# Results
 
 @pytest.fixture
 def results_dir():

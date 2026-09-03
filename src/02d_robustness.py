@@ -65,8 +65,7 @@ RATIO_PROFILES = {
 def run_ratio_sensitivity(model, model_label, cfg):
     
     atpm_rxn, scfa_rxns, glc_rxn, o2_rxn = _setup_model(model, model_label, cfg)
-    # R2.8: normalize by total carbon instead of total moles
-    # Mid dose reference: 4.0 Ac (2C), 1.4 Ppa (3C), 0.8 But (4C) -> 8 + 4.2 + 3.2 = 15.4 total C
+    # Normalize by total carbon basis (mid-dose reference = 15.4 mmol C)
     target_carbon = 15.4 
     rows = []
     for profile_name, (fac, fppa, fbut) in RATIO_PROFILES.items():
@@ -130,7 +129,7 @@ def run_pfba_comparison(model, model_label, cfg):
                     pathway_fluxes[f"fba_{canonical_id}"] = float(
                         sol_fba.fluxes.get(rxn.id, 0))
 
-            # R2.4: compute internal flux deviations (not just objective)
+            # Compute internal flux deviations
             internal_diffs = []
             for r in model.reactions:
                 rid = r.id
@@ -186,7 +185,7 @@ def run_multi_fva(model, model_label, cfg):
                 _apply_condition(scfa_rxns, ac, ppa, but)
                 fva_result = flux_variability_analysis(
                     model, reaction_list=fva_targets,
-                    fraction_of_optimum=frac)
+                    fraction_of_optimum=frac, processes=1)
                 for rxn_id in fva_result.index:
                     fmin = float(fva_result.loc[rxn_id, "minimum"])
                     fmax = float(fva_result.loc[rxn_id, "maximum"])
@@ -291,7 +290,7 @@ def main():
     pd.DataFrame(cap_rows).to_csv(
         paths.results / "flux_cap_sensitivity.csv", index=False)
 
-    print("\n Robustness analyses complete ")
+    print("\nRobustness analyses complete")
     print(f"  ratio_sensitivity.csv:     {len(ratio_rows)} rows")
     print(f"  pfba_comparison.csv:        {len(pfba_rows)} rows")
     print(f"  fva_multi_threshold.csv:    {len(fva_rows)} rows")

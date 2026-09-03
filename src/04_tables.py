@@ -119,7 +119,7 @@ def main():
             t5_rows.append({
                 "Condition": r["Condition"],
                 "Recon3D Original": round(r["Recon3D_orig_ATPM"], 2),
-                "Recon3D Rescued": round(rescued, 2),
+                "Recon3D Harmonized": round(rescued, 2),
                 "Human-GEM": round(hgem, 2),
                 "Convergence": conv,
             })
